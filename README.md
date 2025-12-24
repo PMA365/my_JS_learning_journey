@@ -15,6 +15,7 @@ I’m working through each chapter, taking notes, solving exercises, and buildin
 
 ## 🗂️ Repository Structure
 
+```
 my_JS_learning_journey/
 │
 ├── chapter_01_values_types_operators/
@@ -33,6 +34,7 @@ my_JS_learning_journey/
 │ └── exercises.js
 │
 └── README.md # Main repo overview
+```
 
 ---
 
