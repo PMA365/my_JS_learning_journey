@@ -1,0 +1,30 @@
+# 📅 JavaScript Learning Progress Log
+
+This file tracks my daily progress as I work through _Eloquent JavaScript_ and document everything in this repository.
+
+---
+
+## 2025-12-25
+
+Chapter 1 — Values, Types, and Operators
+
+- Reached the section on the **nullish coalescing operator (??)**
+- Reviewed and practiced:
+  - Logical OR (||)
+  - Logical AND (&&)
+  - Nullish coalescing (??)
+- Added multiple examples and usage notes to examples.js
+- Organized chapter folder structure for notes + code in one place
+
+---
+
+## 2025-12 Repository Setupup
+
+- Created the repository: _my_JS_learning_journey_
+- Wrote the main README
+- Announced the learning journey on LinkedIn
+- Set up chapter folder structure template
+
+---
+
+_(This log will be updated daily as I continue reading, practicing, and building.)_
