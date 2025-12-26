@@ -4,6 +4,13 @@ This file tracks my daily progress as I work through _Eloquent JavaScript_ and d
 
 ---
 
+## 2025-12-26
+
+✔️ Chapter 1 completed 
+example + README.md of Chapter 1 completed
+
+---
+
 ## 2025-12-25
 
 Chapter 1 — Values, Types, and Operators
