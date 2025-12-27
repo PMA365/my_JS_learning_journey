@@ -115,4 +115,16 @@ no matter what X is—even if it’s a piece of program that does something terr
 
 The conditional operator(Ternary operator) works in a similar way. Of the second and third values, only the one that is selected is evaluated.
 
+---
+
 ?? Nullish Coalescing Operator
+
+So this operator is used to return the right-hand value only when the left-hand side is null or undefined
+
+```
+let username = null; let displayName = username ?? "Guest"; console.log(displayName); // "Guest"
+```
+
+If username is null or undefined, "Guest" is returned.
+
+If username is 0, false, or "", those values are kept (unlike ||).

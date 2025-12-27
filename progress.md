@@ -4,9 +4,16 @@ This file tracks my daily progress as I work through _Eloquent JavaScript_ and d
 
 ---
 
+## 2025-12-27
+
+Chapter 2 started
+learned what is bigInt and Symbol
+
+---
+
 ## 2025-12-26
 
-✔️ Chapter 1 completed 
+✔️ Chapter 1 completed
 example + README.md of Chapter 1 completed
 
 ---
