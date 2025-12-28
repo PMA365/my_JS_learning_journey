@@ -193,3 +193,165 @@ Here, obj is a reference to an object.
 ```
 
 ---
+
+### Binding Names
+
+sequence of one or more letters. Digits can be part of binding names—catch22 is a valid name, for example—but the name must not start with a digit.
+
+A binding name may include dollar signs ($) or underscores (\_) but no other punctuation or special characters
+
+---
+
+####The Environment
+
+The collection of bindings and their values that exist at a given time is called the environment.
+
+When a program starts up, this environment is not empty.
+It always contains bindings that are part of the language standard, and most of the time, it also has bindings that provide ways to interact with the surrounding system.
+For example, in a browser, there are functions to interact with the currently loaded website and to read mouse and keyboard input
+
+#### functions
+
+A lot of the values provided in the default environment have the type function
+
+For example, in a browser environment, the binding prompt holds a function that shows a little dialog asking for user input. It is used like this:
+
+```js
+prompt("Enter passcode");
+```
+
+---
+
+```
+let theNumber = Number(prompt("Pick a number"));
+```
+
+The function Number converts a value to a number.
+
+The Number.isNaN function is a standard JavaScript function that returns true only if the argument it is given is NaN
+
+```js
+Number.isNaN(theNumber);
+```
+
+```js
+let theNumber = Number(prompt("Pick a number"));
+if (!Number.isNaN(theNumber)) {
+	console.log("Your number is the square root of " + theNumber * theNumber);
+}
+```
+
+---
+
+### for loops
+
+```js
+for (let number = 0; number <= 12; number = number + 2) {
+	console.log(number);
+}
+```
+
+The parentheses after a for keyword must contain two semicolons. The part before the first semicolon initializes the loop, **usually** by defining a binding.The second part is the expression that checks whether the loop must continue. The final part updates the state of the loop after every iteration. In most cases, this is shorter and clearer than a while construct.
+
+why **usually** is used here?
+Because the initialization part of a for loop does not have to define a variable.
+It often does — but it’s not required.
+
+✔️ the initialization can be anything (or even empty)
+It can:
+
+Assign to an existing variable
+
+Call a function
+
+Be empty
+
+Contain multiple expressions
+
+Or even be something unrelated to the loop counter
+
+```js
+let i = 5 for (i; i < 10; i++) { console.log(i) }
+
+for (openConnection(); !connectionClosed(); readNextChunk()){
+  processChunk();
+}
+
+let i = 0
+for (; i < 10; i++) {
+  console.log(i)
+}
+
+for (let i = 0, j = 10; i < j; i++, j--) {
+  console.log(i, j)
+}
+
+```
+
+break → stops the loop entirely
+
+continue → skips the rest of the current iteration and jumps to the next one
+
+The break statement has the effect of immediately jumping out of the enclosing loop
+
+```js
+for (let current = 20; ; current = current + 1) {
+	if (current % 7 == 0) {
+		console.log(current);
+		break;
+	}
+}
+// → 21
+```
+
+The continue keyword is similar to break in that it influences the progress of a loop. When continue is encountered in a loop body, control jumps out of the body and continues with the loop’s next iteration.
+
+```js
+const users = ["amir", "", "sara", null, "john"];
+
+for (let user of users) {
+	if (!user) {
+		continue; // skip empty or null entries
+	}
+
+	console.log("Valid user:", user);
+}
+```
+
+---
+
+### switch case
+
+```js
+switch (prompt("What is the weather like?")) {
+	case "rainy":
+		console.log("Remember to bring an umbrella.");
+		break;
+	case "sunny":
+		console.log("Dress lightly.");
+	case "cloudy":
+		console.log("Go outside.");
+		break;
+	default:
+		console.log("Unknown weather type!");
+		break;
+}
+```
+
+in this example bc we dont have break right after the "sunny"
+it will continue to reach the break right after "Go outside."
+and this is good bc we dont need to write the "Go outside."
+another time for the "sunny" case.
+
+---
+
+### Comments
+
+2 way of writing comments in js :
+
+```js
+// single line comment
+/*
+I first found this number scrawled on the back of an old notebook. Since then, it has often dropped by, showing up in phone numbers and the serial numbers of products that I've bought. It obviously likes me, so I've decided to keep it.
+*/
+```

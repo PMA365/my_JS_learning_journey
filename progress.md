@@ -4,6 +4,15 @@ This file tracks my daily progress as I work through _Eloquent JavaScript_ and d
 
 ---
 
+## 2025-12-28
+
+Chapter 2
+Studied the whole chapter
+solves 2/3 exercises
+only the last exercise remained
+
+---
+
 ## 2025-12-27
 
 Chapter 2 started
