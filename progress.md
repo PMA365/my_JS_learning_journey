@@ -8,8 +8,8 @@ This file tracks my daily progress as I work through _Eloquent JavaScript_ and d
 
 Chapter 2
 Studied the whole chapter
-solves 2/3 exercises
-only the last exercise remained
+solved the all the exercises successfully
+✔️ Chapter 2 completed
 
 ---
 

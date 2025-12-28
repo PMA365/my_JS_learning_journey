@@ -49,13 +49,13 @@ my_JS_learning_journey/
 
 ## 📅 Progress Tracker
 
-| Date       | Chapter / Task      | Status | Notes                         |
-| ---------- | ------------------- | ------ | ----------------------------- |
-| 2025‑12‑25 | Started the journey | ✔️     | Created repo + announcement   |
-| 2025‑11‑26 | Chapter 1           | ✔️     | example + README.md completed |
-| 2025‑01‑XX | Chapter 2           | ⬜️    |                               |
-| 2025‑01‑XX | Chapter 3           | ⬜️    |                               |
-| ...        | ...                 | ...    | ...                           |
+| Date       | Chapter / Task      | Status | Notes                                     |
+| ---------- | ------------------- | ------ | ----------------------------------------- |
+| 2025‑12‑25 | Started the journey | ✔️     | Created repo + announcement               |
+| 2025‑11‑26 | Chapter 1           | ✔️     | example + README.md completed             |
+| 2025‑01‑28 | Chapter 2           | ✔️     | all exercises have been done successfully |
+| 2025‑01‑XX | Chapter 3           | ⬜️    |                                           |
+| ...        | ...                 | ...    | ...                                       |
 
 ---
 
