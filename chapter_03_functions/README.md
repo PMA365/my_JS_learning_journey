@@ -141,3 +141,46 @@ const horn = () => {
 ---
 
 ### The Call Stack
+
+The place where the computer stores this context is the call stack.
+
+Every time a function is called, the current context is stored on top of this stack. When a function returns, it removes the top context from the stack and uses that context to continue execution
+
+Storing this stack requires space in the computer’s memory. When the stack grows too big, the computer will fail with a message like “out of stack space” or “too much recursion.”
+
+### Optional Arguments
+
+JavaScript is extremely broad-minded about the number of arguments you can pass to a function. If you pass too many, the extra ones are ignored. If you pass too few, the missing parameters are assigned the value **undefined**.
+
+```js
+function square(x) {
+	return x * x;
+}
+console.log(square(4, true, "hedgehog")); // → 16
+```
+
+<!-- missing parameters are assigned the value undefined -->
+
+```js
+function minus(a, b) {
+	if (b === undefined) return -a;
+	else return a - b;
+}
+console.log(minus(10));
+// → -10
+```
+
+If you write an = operator after a parameter, followed by an expression, the value of that expression will replace the argument when it is not given(sth like default value for that parameter)
+
+```js
+function roundTo(n, step = 1) {
+	let remainder = n % step;
+	return n - remainder + (remainder < step / 2 ? 0 : step);
+}
+console.log(roundTo(4.5));
+// → 5
+console.log(roundTo(4.5, 2));
+// → 4
+```
+
+### Closure
