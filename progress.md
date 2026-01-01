@@ -4,6 +4,30 @@ This file tracks my daily progress as I work through _Eloquent JavaScript_ and d
 
 ---
 
+## 2026-01-01
+
+Happy New Year!
+
+Studied the Closure
+
+---
+
+## 2025-12-31
+
+Studied Chapter 3 up to the Call Stack
+
+---
+
+## 2025-12-30
+
+learned how the costum roundTo function working
+
+---
+
+## 2025-12-29
+
+## chapter 3 files created
+
 ## 2025-12-28
 
 Chapter 2

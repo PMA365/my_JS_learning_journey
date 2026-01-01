@@ -184,3 +184,64 @@ console.log(roundTo(4.5, 2));
 ```
 
 ### Closure
+
+purpose of Closure existance :
+This feature—being able to reference a specific instance of a local binding in an enclosing scope—is called closure
+
+A function that references bindings from local scopes around it is called a closure.
+OR
+A closure is created when:
+an inner function
+keeps access to the variables of its outer function
+even after the outer function has finished executing.
+
+```js
+function outer() {
+	let count = 0;
+
+	function inner() {
+		count++;
+		console.log(count);
+	}
+
+	return inner;
+}
+
+const fn = outer();
+fn(); // 1
+fn(); // 2
+```
+
+```js
+function multiplier(factor) {
+	return (number) => number * factor;
+}
+let twice = multiplier(2);
+console.log(twice(5));
+// → 10
+```
+
+---
+
+### Recursion
+
+A function that calls itself is called recursive
+
+this power function, which does the same as the \*\* (exponentiation) operator
+
+```js
+function power(base, exponent) {
+	if (exponent == 0) {
+		return 1;
+	} else {
+		return base * power(base, exponent - 1);
+	}
+}
+console.log(power(2, 3));
+// → 8
+// input (2,3)
+// 2*power(2,2)
+// power(2,2) = 2*power(2,1)
+// power(2,1)= 2*power(2,0) = 2*1
+// => 2*2*2*1
+```
