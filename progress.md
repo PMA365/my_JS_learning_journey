@@ -2,6 +2,12 @@
 
 This file tracks my daily progress as I work through _Eloquent JavaScript_ and document everything in this repository.
 
+## 2026-01-02
+
+finally finished the whole chapter
+solved all the exercises successfully
+✔️ Chapter 3 completed
+
 ---
 
 ## 2026-01-01
@@ -32,7 +38,7 @@ learned how the costum roundTo function working
 
 Chapter 2
 Studied the whole chapter
-solved the all the exercises successfully
+solved all the exercises successfully
 ✔️ Chapter 2 completed
 
 ---
