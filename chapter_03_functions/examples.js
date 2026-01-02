@@ -30,3 +30,31 @@ const makeNoise = function () {
 	console.log("Pling!");
 };
 console.log(makeNoise()); // -> undefined
+
+/////////////////////////////////////////////////
+// Recursion Example
+// puzzle: by starting from the number 1 and repeatedly either adding 5 or multiplying by 3
+// write a function that, given a number, tries to find a sequence of such additions
+
+function findSolution(givenNumber) {
+	stringValue = "";
+	totalOperationDone = 0;
+	function addOrMultiply(currentReachedNumber, solutionString) {
+		totalOperationDone++;
+		if (currentReachedNumber == givenNumber) {
+			return solutionString;
+		} else if (currentReachedNumber > givenNumber) {
+			return null;
+		} else {
+			return (currentReachedNumber =
+				addOrMultiply(currentReachedNumber + 5, `(${solutionString} +5)`) ??
+				addOrMultiply(currentReachedNumber * 3, `(${solutionString} *3)`));
+		}
+	}
+	result =
+		addOrMultiply(1, "1") + `\n totalOperationDone =${totalOperationDone}`;
+	return result;
+}
+console.log(findSolution(13));
+
+///////////////////////

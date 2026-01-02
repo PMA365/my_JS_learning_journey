@@ -245,3 +245,67 @@ console.log(power(2, 3));
 // power(2,1)= 2*power(2,0) = 2*1
 // => 2*2*2*1
 ```
+
+However, this implementation has one problem: in typical JavaScript implementations, it’s about three times slower than a version using a for loop
+
+---
+
+### Growing Functions
+
+its all about :
+how to evolve small, specific functions into flexible, reusable abstractions by adding parameters, separating concerns, and building layered functionality
+
+Whats abstractoins ?
+A good abstraction is reusable and general, and focused on one clear task
+
+```js
+function sum(arr) {
+	let total = 0;
+	for (let n of arr) total += n;
+	return total;
+}
+```
+
+=> do one clear task ,is reusable and general
+
+##### Functions Should Do One Thing Well
+
+Instead of mixing logic (looping + printing + formatting), break the problem into smaller functions
+
+This is not an abstraction — it’s too specific.
+
+```js
+function print1to10() {
+	for (let i = 1; i <= 10; i++) console.log(i);
+}
+```
+
+---
+
+### Functions and Side Effects
+
+Functions can be roughly divided into those that are called for their side effects and those that are called for their return value
+
+##### whats pure functions?
+
+when called with the same arguments, it always produces the same value
+doesn’t rely on side effects from other code
+doesn’t read global bindings whose value might change
+
+---
+
+### summery
+
+```js
+// Define f to hold a function value
+const f = function (a) {
+	console.log(a + 2);
+};
+// Declare g to be a function
+function g(a, b) {
+	return a * b * 3.5;
+}
+//prettier-ignore
+// A less verbose function value
+let h = (a) => a % 3;
+```
