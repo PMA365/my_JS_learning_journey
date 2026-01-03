@@ -45,3 +45,19 @@ const mixedArray = [
 ];
 
 console.log(mixedArray); // [ 'Hello', 42, true, { name: 'Amir' }, [ 1, 2, 3 ], null, undefined ]
+
+let object1 = { value: 10 };
+let object2 = object1;
+let object3 = { value: 10 };
+console.log(object1 == object2); // → true
+console.log(object1 == object3); // → false
+
+object1.value = 15;
+console.log(object2.value); // → 15 console.log(object3.value); // → 10
+
+//
+const score = { visitors: 0, home: 0 }; // This is OK
+score.visitors = 1;
+console.log(score); // { visitors: 1, home: 0 }
+// This isn't allowed
+score = { visitors: 1, home: 1 }; // TypeError: Assignment to constant variable.

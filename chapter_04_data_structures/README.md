@@ -124,3 +124,96 @@ console.log(objectA);
 ```
 
 array doesn’t care what type each element is , it just stores values.
+
+```js
+//array doesn’t care what type each element is , it just stores values.
+const mixedArray = [
+	"Hello", // string
+	42, // number
+	true, // boolean
+	{ name: "Amir" }, // object
+	[1, 2, 3], // array
+	null, // null
+	undefined, // undefined
+];
+
+console.log(mixedArray); // [ 'Hello', 42, true, { name: 'Amir' }, [ 1, 2, 3 ], null, undefined ]
+```
+
+---
+
+#### Mutability
+
+We saw that object values can be modified. The types of values discussed in earlier chapters, such as numbers, strings, and Booleans, are all immutable— it is impossible to change values of those types. You can combine them and derive new values from them, but when you take a specific string value, that value will always remain the same. The text inside it cannot be changed. If you have a string that contains “cat”, it is not possible for other code to change a character in your string to make it spell “rat”.
+
+```js
+let str = "cat";
+str = "rat";
+```
+
+Step by step:
+
+"cat" is created in memory (immutable).
+
+str points to "cat".
+
+"rat" is created in memory (also immutable).
+
+str is reassigned to point to "rat".
+
+so
+The original "cat" never changed.
+It’s still "cat" forever.
+
+Only the variable changed.
+
+You cannot change the inside of a string.
+You can only replace the whole value with a new string
+
+"cat" will always stay "cat" for its entire lifetime.
+No code can turn it into "rat".
+
+##### So
+
+##### ⭐ All primitive values in JavaScript are immutable.
+
+string
+
+number
+
+boolean
+
+null
+
+undefined
+
+symbol
+
+bigint
+
+<br>
+<br>
+
+Comparing different objects will return false, even if they have identical properties. There is no “deep” comparison operation built into Java-Script that compares objects by contents
+
+```js
+let object1 = { value: 10 };
+let object2 = object1;
+let object3 = { value: 10 };
+console.log(object1 == object2); // → true
+console.log(object1 == object3); // → false
+
+object1.value = 15;
+console.log(object2.value); // → 15 console.log(object3.value); // → 10
+```
+
+a **const** binding to an object can itself not be changed and will continue to point at the same object, the contents of that object might change
+
+```js
+const score = { visitors: 0, home: 0 }; // This is OK
+score.visitors = 1;
+// This isn't allowed
+score = { visitors: 1, home: 1 };
+```
+
+#### The Lycanthrope’s Log
