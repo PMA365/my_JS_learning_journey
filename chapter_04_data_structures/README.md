@@ -217,3 +217,168 @@ score = { visitors: 1, home: 1 };
 ```
 
 #### The Lycanthrope’s Log
+
+#### Array Loops
+
+When a for loop uses the word of after its variable definition, it will loop over the elements of the value given after of. This works not only for arrays but also for strings and some other data structures. We’ll discuss how it works in Chapter 6.
+
+```js
+for (let i = 0; i < JOURNAL.length; i++) {
+	let entry = JOURNAL[i];
+	// Do something with entry
+}
+
+for (let entry of JOURNAL) {
+	console.log(`${entry.events.length} events.`);
+}
+```
+
+#### Further Arrayology
+
+We saw push and pop, which add and remove elements at the end of an array, earlier in this chapter.
+The corresponding methods for adding and removing things at the start of an array are called unshift and shift
+
+```js
+let todoList = [];
+function remember(task) {
+	todoList.push(task);
+}
+function getTask() {
+	return todoList.shift();
+}
+function rememberUrgently(task) {
+	todoList.unshift(task);
+}
+```
+
+---
+
+indexOf()
+lastIndexOf()
+
+```js
+console.log([1, 2, 3, 2, 1].indexOf(2));
+// → 1
+console.log([1, 2, 3, 2, 1].lastIndexOf(2)); // → 3
+```
+
+**Note**
+Both indexOf and lastIndexOf take an optional second argument that indicates where to start searching.
+
+```js
+console.log([1, 2, 3, 2, 1].indexOf(2));
+// → 1
+console.log([1, 2, 3, 2, 1].lastIndexOf(2)); // → 3
+```
+
+**Note**
+lastIndexOf(value, fromIndex) works like this
+It starts searching backward from the index you give it.
+It stops when it finds the first match going backward
+
+---
+
+slice(2, 4)
+The start index is inclusive and the end index is exclusive
+
+```js
+console.log([0, 1, 2, 3, 4].slice(2, 4)); // → [2, 3]
+```
+
+When the end index is not given, slice will take all of the elements after the start index. You can also omit the start index to copy the entire array.
+
+```js
+console.log([0, 1, 2, 3, 4].slice(2)); // → [2, 3, 4]
+```
+
+concat()
+
+```js
+let array1 = [1, 3, 4, 5];
+console.log(array1.concat(66, 77));
+```
+
+**Note**
+we can use both indexOf() and slice() on String and array with 1 important difference :
+⭐ The key difference
+✔️ String.indexOf()
+Can search for substrings (multiple characters).
+
+✔️ Array.indexOf()
+Can search only for one element (one item), not a sequence.
+
+```js
+console.log("one two three".indexOf("ee")); // 11
+
+[1, 2, 3, 2].indexOf([2, 3]); // ❌ always -1
+```
+
+---
+
+The trim method removes whitespace
+
+```js
+console.log("  okay \n ".trim()); // → okay
+```
+
+padStart and takes the desired length and padding character as arguments.
+
+```js
+console.log(String("A").padStart(3, "0")); // 00A
+console.log(String(6).padStart(3, "0")); // 006
+```
+
+.split() .join()
+
+```js
+let sentence = "Secretarybirds specialize in stomping";
+let words = sentence.split(" ");
+console.log(words);
+// → ["Secretarybirds", "specialize", "in", "stomping"] console.log(words.join(". "));
+// → Secretarybirds. specialize. in. stomping
+```
+
+.repeat()
+
+```js
+console.log("LA".repeat(3)); // → LALALA
+```
+
+using [] for accessing specefic char at that index of string just like the arrays
+
+```js
+let string = "abc";
+console.log(string[1]);
+// → b
+```
+
+### rest parameter
+
+```js
+function max(...numbers) {
+	let result = -Infinity;
+	for (let number of numbers) {
+		if (number > result) result = number;
+	}
+	return result;
+}
+console.log(max(4, 1, 9, -2));
+// → 9
+
+let numbers = [5, 1, 7];
+console.log(max(...numbers));
+
+// this will not work bc the input variable of function will be this [ [ 5, 1, 7 ] ]
+// and not this  [ 5, 1, 7 ] so the for loop cant work on only 1 item
+console.log(max(numbers));
+
+// This ...rest parameter works even in array
+let words = ["never", "fully"];
+console.log(["will", ...words, "understand"]);
+
+// This ...rest parameter works even in curly brace objects
+let coordinates = { x: 10, y: 0 };
+console.log({ ...coordinates, y: 5, z: 1 });
+```
+
+#### The Math Object
