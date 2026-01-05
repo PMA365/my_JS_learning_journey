@@ -382,3 +382,5 @@ console.log({ ...coordinates, y: 5, z: 1 });
 ```
 
 #### The Math Object
+
+Math.max (maximum), Math.min (minimum), and Math.sqrt (square root).
