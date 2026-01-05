@@ -131,3 +131,5 @@ console.log(["will", ...words, "understand"]);
 // This ...rest parameter works even in curly brace objects
 let coordinates = { x: 10, y: 0 };
 console.log({ ...coordinates, y: 5, z: 1 });
+
+console.log(Math.PI); // 3.141592653589793

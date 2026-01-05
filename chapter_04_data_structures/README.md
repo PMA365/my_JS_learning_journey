@@ -384,3 +384,59 @@ console.log({ ...coordinates, y: 5, z: 1 });
 #### The Math Object
 
 Math.max (maximum), Math.min (minimum), and Math.sqrt (square root).
+
+For example, it’s not unlikely you’ll want to name something max in one of your programs. Since JavaScript’s built-in max function is tucked safely inside the Math object, you don’t have to worry about overwriting it.
+Many languages will stop you, or at least warn you, when you are defining a binding with a name that is already taken. JavaScript does this
+
+for bindings you declared with let or const but—perversely—not for standard bindings nor for bindings declared with var or function.
+
+Math also have these methods too:
+cos (cosine), sin (sine), and tan (tangent)
+Math.random => pseudorandom number between 0 (inclusive) and 1 (exclusive)
+Math.PI = π (pi) 3.141592653589793
+
+If we want a whole random number instead of a fractional one, we can use Math.floor (which rounds down to the nearest whole number) on
+the result of Math.random.
+
+```js
+console.log(Math.floor(Math.random() * 10)); // → 2
+```
+
+There are also the functions Math.ceil (for “ceiling,” which rounds up to a whole number), Math.round (to the nearest whole number), and Math.abs, which takes the absolute value of a number, meaning it negates negative values but leaves positive ones as they are.
+
+```js
+Math.ceil; // (for “ceiling,” which rounds up to a whole number),
+Math.abs; //meaning it negates negative values
+```
+
+---
+
+#### Destructuring
+
+for better readability
+in js we can convert this
+
+```js
+function phi(table) {
+	return (
+		(table[3] * table[0] - table[2] * table[1]) /
+		Math.sqrt(
+			(table[2] + table[3]) *
+				(table[0] + table[1]) *
+				(table[1] + table[3]) *
+				(table[0] + table[2])
+		)
+	);
+}
+```
+
+to this:
+
+```js
+function phi([n00, n01, n10, n11]) {
+	return (
+		(n11 * n00 - n10 * n01) /
+		Math.sqrt((n10 + n11) * (n00 + n01) * (n01 + n11) * (n00 + n10))
+	);
+}
+```
