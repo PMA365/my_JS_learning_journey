@@ -456,8 +456,9 @@ after asking it from copilot I just understand it usage and how it works:
 1️⃣ Renaming properties cleanly
 APIs often return objects with names you don’t like:
 
-js
+```js
 const user = { fn: "Amir", ln: "Karimi" };
+```
 
 You can rename them instantly:
 
@@ -566,3 +567,32 @@ Now you have both:
 - userName (from object)
 
 ---
+
+#### Optional Property Access
+
+```js
+function city(object) {
+	return object.address?.city;
+}
+console.log(city({ address: { city: "Toronto" } })); // → Toronto
+console.log(city({ name: "Vera" }));
+// → undefined
+
+console.log("string".notAMethod?.()); // →undefined
+console.log({}.arrayProp?.[0]); // → undefined
+```
+
+---
+
+#### json
+
+JavaScript Object Notation.
+All property names have to be surrounded by double quotes, and only simple data expressions are allowed—no function calls, bindings, or anything that involves actual computation. Comments are not allowed in JSON.
+
+```json
+{
+	"squirrel": false,
+	"events": ["work", "touched tree", "pizza", "running"]
+}
+```
+JavaScript gives us the functions 
