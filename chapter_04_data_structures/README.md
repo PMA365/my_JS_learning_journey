@@ -595,4 +595,26 @@ All property names have to be surrounded by double quotes, and only simple data 
 	"events": ["work", "touched tree", "pizza", "running"]
 }
 ```
-JavaScript gives us the functions 
+
+JavaScript gives us the functions :
+
+```js
+JSON.stringify;
+
+JSON.parse;
+```
+
+JSON.stringify : takes a JavaScript value and returns a JSON-encoded string
+
+JSON.parse : takes such a string and converts it to the value it encodes.
+encode = convert ordinary language into code(code kardan)
+parse = (tajzie kardan)
+
+```js
+let string = JSON.stringify({ squirrel: false, events: ["weekend"] });
+console.log(string); // → {"squirrel":false,"events":["weekend"]}
+console.log(JSON.parse(string).events); // → ["weekend"]
+```
+
+You can iterate over arrays using a special kind of for loop:
+for (let element of array)
