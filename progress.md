@@ -2,11 +2,74 @@
 
 This file tracks my daily progress as I work through _Eloquent JavaScript_ and document everything in this repository.
 
+## 2026-01-11
+
+solved the last exercise Deep Comparison
+solved all the exercises successfully
+✔️ Chapter 4 completed
+
+---
+
+## 2026-01-10
+
+solved the 3rd exercise A List done
+
+---
+
+## 2026-01-9
+
+The Sum of a Range + Reversing an Array
+solved successfully
+
+---
+
+## 2026-01-8
+
+studied up to JSON
+
+---
+
+## 2026-01-7
+
+learned amazing thing in js :
+
+let {name} = {name: "Faraji", age: 23};
+console.log(name);
+// → Faraji
+
+---
+
+## 2026-01-6
+
+Studied up to Destructuring
+
+---
+
+## 2026-01-5
+
+Studied the Math Object
+
+---
+
+## 2026-01-4
+
+Studied up to The Lycanthrope’s Log
+
+---
+
+## 2026-01-3
+
+Started reading Chapter 4
+... Studied up to methods
+
+---
+
 ## 2026-01-02
 
 finally finished the whole chapter
 solved all the exercises successfully
 ✔️ Chapter 3 completed
+chapter 4 folder and files created
 
 ---
 
