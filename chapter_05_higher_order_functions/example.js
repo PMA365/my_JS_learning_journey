@@ -1,1 +1,85 @@
+// idk what is the real world usage of writing functions like this?
+function noisy(f) {
+	return (...args) => {
+		console.log("calling with", args);
+		let result = f(...args);
+		console.log("called with", args, ", returned", result);
+		return result;
+	};
+}
+noisy(Math.min)(3, 2, 1);
+// → calling with [3, 2, 1]
+// → called with [3, 2, 1] , returned 1
 
+//
+
+function repeat(n, action) {
+	for (let i = 0; i < n; i++) {
+		action(i);
+	}
+}
+function unless(test, then) {
+	if (!test) then();
+}
+repeat(3, (n) => {
+	unless(n % 2 == 1, () => {
+		console.log(n, "is even");
+	});
+});
+// → 0 is even
+// → 2 is even
+
+["A", "B"].forEach((l) => console.log(l)); // → A
+
+let SCRIPTS = [
+	{
+		name: "Coptic",
+		ranges: [
+			[994, 1008],
+			[11392, 11508],
+			[11513, 11520],
+		],
+		direction: "rtl",
+		year: -200,
+		living: false,
+		link: "https://en.wikipedia.org/wiki/Coptic_alphabet",
+	},
+];
+function filter(array, test) {
+	let passed = [];
+	for (let element of array) {
+		if (test(element)) {
+			passed.push(element);
+		}
+	}
+	return passed;
+}
+
+function map(array, transform) {
+	let mapped = [];
+	for (let element of array) {
+		mapped.push(transform(element));
+	}
+	return mapped;
+}
+
+let rtlScripts = SCRIPTS.filter((s) => s.direction == "rtl");
+console.log(map(rtlScripts, (s) => s.name));
+// → ["Adlam", "Arabic", "Imperial Aramaic", ...]
+
+function reduce(array, combine, start) {
+	let current = start;
+	for (let element of array) {
+		current = combine(current, element);
+	}
+	return current;
+}
+console.log(reduce([1, 2, 3, 4], (a, b) => a + b, 0)); // → 10
+console.log(reduce([1, 2, 3, 4], (a, b) => a + b, 20)); // → 30
+
+// The standard array method reduce, which of course corresponds to this function,
+//  has an added convenience. If your array contains at least one element, you are allowed to leave off the start argument. The method will take the first element of the array as its start value and start reducing at the second element.
+// reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T): T;
+// reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T, initialValue: T): T;
+
+console.log([1, 2, 3, 4].reduce((a, b) => a + b)); // → 10
