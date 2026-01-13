@@ -143,3 +143,20 @@ The standard array method reduce, which of course corresponds to this function, 
 ```js
 console.log([1, 2, 3, 4].reduce((a, b) => a + b)); // → 10
 ```
+
+use reduce (twice)
+idk how this work! haha
+need to work on it when someday i can access internet
+```js
+function characterCount(script) {
+	return script.ranges.reduce((count, [from, to]) => {
+		return count + (to - from);
+	}, 0);
+}
+console.log(
+	SCRIPTS.reduce((a, b) => {
+		return characterCount(a) < characterCount(b) ? b : a;
+	})
+);
+// → {name: "Han", ...}
+```
