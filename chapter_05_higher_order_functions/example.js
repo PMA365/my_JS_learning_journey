@@ -44,6 +44,18 @@ let SCRIPTS = [
 		living: false,
 		link: "https://en.wikipedia.org/wiki/Coptic_alphabet",
 	},
+	{
+		name: "Coptic2",
+		ranges: [
+			[994, 1008],
+			[11392, 11508],
+			[11513, 11520],
+		],
+		direction: "rtl",
+		year: -200,
+		living: false,
+		link: "https://en.wikipedia.org/wiki/Coptic_alphabet",
+	},
 ];
 function filter(array, test) {
 	let passed = [];
@@ -83,3 +95,14 @@ console.log(reduce([1, 2, 3, 4], (a, b) => a + b, 20)); // → 30
 // reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T, initialValue: T): T;
 
 console.log([1, 2, 3, 4].reduce((a, b) => a + b)); // → 10
+
+function characterCount(script) {
+	return script.ranges.reduce((count, [from, to]) => {
+		return count + (to - from);
+	}, 0);
+}
+console.log(
+	SCRIPTS.reduce((a, b) => {
+		return characterCount(a) < characterCount(b) ? b : a;
+	})
+);

@@ -147,6 +147,7 @@ console.log([1, 2, 3, 4].reduce((a, b) => a + b)); // → 10
 use reduce (twice)
 idk how this work! haha
 need to work on it when someday i can access internet
+
 ```js
 function characterCount(script) {
 	return script.ranges.reduce((count, [from, to]) => {
@@ -160,3 +161,34 @@ console.log(
 );
 // → {name: "Han", ...}
 ```
+
+#### Composability
+
+```js
+function average(array) {
+	return array.reduce((a, b) => a + b) / array.length;
+}
+console.log(
+	Math.round(average(SCRIPTS.filter((s) => s.living).map((s) => s.year)))
+);
+// → 1165
+console.log(
+	Math.round(average(SCRIPTS.filter((s) => !s.living).map((s) => s.year)))
+); // → 204
+```
+
+```js
+let total = 0,
+	count = 0;
+for (let script of SCRIPTS) {
+	if (script.living) {
+		total += script.year;
+		count += 1;
+	}
+}
+console.log(Math.round(total / count)); // → 1165
+```
+
+However, it is harder to see what was being computed and how. And because intermediate results aren’t represented as coherent values, it’d be a lot more work to extract something like average into a separate function.
+
+You can usually afford the readable approach, but if you’re processing huge arrays and doing so many times, the less abstract style might be worth the extra speed.
