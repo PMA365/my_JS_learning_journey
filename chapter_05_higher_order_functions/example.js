@@ -57,6 +57,7 @@ let SCRIPTS = [
 		link: "https://en.wikipedia.org/wiki/Coptic_alphabet",
 	},
 ];
+// example of how the filter (standard array method) works
 function filter(array, test) {
 	let passed = [];
 	for (let element of array) {

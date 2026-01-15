@@ -61,12 +61,16 @@ noisy(Math.min)(3, 2, 1);
 // → called with [3, 2, 1] , returned 1
 ```
 
-There is a built-in array method, forEach, that provides something like a for/of loop as a higher-order function.
+---
+
+There is a built-in array method, forEach, that provides something like a **for/of** loop as a higher-order function.
 
 ```js
 ["A", "B"].forEach((l) => console.log(l)); // → A
 // → B
 ```
+
+---
 
 #### Filtering Arrays
 
@@ -80,13 +84,22 @@ function filter(array, test) {
 	}
 	return passed;
 }
+```
 
+The example defined the function only to show what it does internally. From now on, we’ll
+use it like this instead :
+
+```js
 console.log(filter(SCRIPTS, (script) => script.living)); // → [{name: "Adlam", ...}, ...]
 ```
 
+Note how the filter function, rather than deleting elements from
+the existing array, builds up a new array with only the elements that pass the test.
+This function is **pure** ,It does not modify the array it is given
+
 #### Transforming with map
 
-The map method transforms an array by applying a function to all of its elements and building a new array from the returned values. The new array will have the same length as the input array, but its content will have been mapped to a new form by the function.
+The map method transforms an array by applying a function to all of its elements and building a **new array** from the returned values. The new array will have the same **length as the input array**, but its content will have been mapped to a new form by the function.
 
 ```js
 let SCRIPTS = {
@@ -101,15 +114,6 @@ let SCRIPTS = {
 	living: false,
 	link: "https://en.wikipedia.org/wiki/Coptic_alphabet",
 };
-function filter(array, test) {
-	let passed = [];
-	for (let element of array) {
-		if (test(element)) {
-			passed.push(element);
-		}
-	}
-	return passed;
-}
 
 function map(array, transform) {
 	let mapped = [];
@@ -123,7 +127,13 @@ console.log(map(rtlScripts, (s) => s.name));
 // → ["Adlam", "Arabic", "Imperial Aramaic", ...]
 ```
 
+Like forEach and filter, map is a standard array method.
+
 #### Summarizing with reduce
+
+reduce (sometimes also called fold)
+
+example of how reduce works :
 
 ```js
 function reduce(array, combine, start) {
@@ -135,6 +145,8 @@ function reduce(array, combine, start) {
 }
 console.log(reduce([1, 2, 3, 4], (a, b) => a + b, 0)); // → 10
 
+// the real reduce array method
+// The standard array method reduce, which of course corresponds to this function, has an added convenience. If your array contains at least one element, you are allowed to leave off the start argument.
 console.log([1, 2, 3, 4].reduce((a, b) => a + b)); // → 10
 ```
 
