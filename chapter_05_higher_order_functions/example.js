@@ -47,7 +47,19 @@ let SCRIPTS = [
 	{
 		name: "Coptic2",
 		ranges: [
-			[994, 1008],
+			[994, 1000],
+			[11392, 11508],
+			[11513, 11520],
+		],
+		direction: "rtl",
+		year: -200,
+		living: false,
+		link: "https://en.wikipedia.org/wiki/Coptic_alphabet",
+	},
+	{
+		name: "Coptic3",
+		ranges: [
+			[700, 1000],
 			[11392, 11508],
 			[11513, 11520],
 		],
@@ -94,11 +106,22 @@ console.log(reduce([1, 2, 3, 4], (a, b) => a + b, 20)); // → 30
 //  has an added convenience. If your array contains at least one element, you are allowed to leave off the start argument. The method will take the first element of the array as its start value and start reducing at the second element.
 // reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T): T;
 // reduce(callbackfn: (previousValue: T, currentValue: T, currentIndex: number, array: T[]) => T, initialValue: T): T;
-
+console.log("real reduce");
+// without starting value
 console.log([1, 2, 3, 4].reduce((a, b) => a + b)); // → 10
+//with starting value my tests hahaha
+// in the begining the a is just our starting value 3 and the b should be the first value of the array means 2
+console.log([1, 2, 3, 4].reduce((a, b) => a + b, 2)); // → 12
+console.log(
+	[1, 2, 3, 4].reduce((a, b) => {
+		// in the begining the a is just our starting value 3 and the b should be the first value of the array means 1
+		return a + b;
+	}, 3)
+); // → 13
 
 function characterCount(script) {
 	return script.ranges.reduce((count, [from, to]) => {
+		console.log(count);
 		return count + (to - from);
 	}, 0);
 }
@@ -107,3 +130,4 @@ console.log(
 		return characterCount(a) < characterCount(b) ? b : a;
 	})
 );
+// now I know how twice reduce works in this example

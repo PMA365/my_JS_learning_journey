@@ -161,6 +161,18 @@ idk how this work! haha
 need to work on it when someday i can access internet
 
 ```js
+let SCRIPTS = {
+	name: "Coptic",
+	ranges: [
+		[994, 1008],
+		[11392, 11508],
+		[11513, 11520],
+	],
+	direction: "ltr",
+	year: -200,
+	living: false,
+	link: "https://en.wikipedia.org/wiki/Coptic_alphabet",
+};
 function characterCount(script) {
 	return script.ranges.reduce((count, [from, to]) => {
 		return count + (to - from);
