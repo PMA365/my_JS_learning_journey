@@ -189,6 +189,22 @@ console.log(
 #### Composability
 
 ```js
+let biggest = null;
+for (let script of SCRIPTS) {
+	if (biggest == null || characterCount(biggest) < characterCount(script)) {
+		biggest = script;
+	}
+}
+console.log(biggest);
+// → {name: "Han", ...}
+```
+
+idk why biggest == null used here ?
+bc at the beginning thats null and for setting value to it
+we need to do it in the for loop if we dont use that here
+the characterCount(biggest) will throw TypeError: Cannot read properties of null (reading 'ranges')
+
+```js
 function average(array) {
 	return array.reduce((a, b) => a + b) / array.length;
 }

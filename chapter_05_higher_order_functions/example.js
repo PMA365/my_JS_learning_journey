@@ -131,3 +131,15 @@ console.log(
 	})
 );
 // now I know how twice reduce works in this example
+
+//Composability
+console.log("Composability");
+
+let biggest = null;
+for (let script of SCRIPTS) {
+	if (biggest == null || characterCount(biggest) < characterCount(script)) {
+		biggest = script;
+	}
+}
+
+console.log(biggest);
