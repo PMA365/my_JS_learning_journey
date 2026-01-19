@@ -143,3 +143,17 @@ for (let script of SCRIPTS) {
 }
 
 console.log(biggest);
+
+console.log("pipeline");
+
+function average(array) {
+	return array.reduce((a, b) => a + b) / array.length;
+}
+//TypeError: Reduce of empty array with no initial value
+console.log(
+	Math.round(average(SCRIPTS.filter((s) => s.living).map((s) => s.year)))
+);
+// → 1165
+console.log(
+	Math.round(average(SCRIPTS.filter((s) => !s.living).map((s) => s.year)))
+); // → 204

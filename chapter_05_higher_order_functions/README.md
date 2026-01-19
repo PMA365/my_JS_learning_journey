@@ -232,3 +232,7 @@ console.log(Math.round(total / count)); // → 1165
 However, it is harder to see what was being computed and how. And because intermediate results aren’t represented as coherent values, it’d be a lot more work to extract something like average into a separate function.
 
 You can usually afford the readable approach, but if you’re processing huge arrays and doing so many times, the less abstract style might be worth the extra speed.
+
+---
+
+#### Strings and Character Codes
