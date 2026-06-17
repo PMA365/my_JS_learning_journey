@@ -56,7 +56,8 @@ my_JS_learning_journey/
 | 2025‑12‑28 | Chapter 2           | ✔️     | all exercises have been done successfully                     |
 | 2026‑01‑02 | Chapter 3           | ✔️     | all exercises have been done successfully                     |
 | 2026‑01‑11 | Chapter 4           | ✔️     | chapter completed + all exercises have been done successfully |
-| 2026‑01‑xx | Chapter 5           | ⬜️    |                                                               |
+| 2026‑01‑11 | 2026‑06‑17         |  🤕🥀   | lost 4 people who meant the world to my life, and for a while writing code wasn't sth I could focus on! |
+| 2026‑06‑xx | Chapter 5           | ⬜️    |                                                               |
 | ...        | ...                 | ...    | ...                                                           |
 
 ---
