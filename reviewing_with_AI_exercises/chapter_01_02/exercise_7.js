@@ -17,5 +17,6 @@
 
 //4/ "5" == 5  will be True
 //5/ "5" === 5 will be False bc the type of the "5" will be string
+// (=== does not do type coercion)
 
 console.log("5" - 3);
