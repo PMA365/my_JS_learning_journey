@@ -4,3 +4,5 @@
 // - Return false only if both values are falsy
 // - Return the first value if it's truthy, otherwise the second (|| behavior)
 // - Return the first value if it's falsy, otherwise the second (&& behavior)
+console.log("bahador" == "bahador");
+console.log(1 + 1 == 2 && 10 * 10 > 50);
