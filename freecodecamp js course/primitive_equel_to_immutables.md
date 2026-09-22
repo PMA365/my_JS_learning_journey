@@ -65,3 +65,19 @@ Yes, that is exactly right. That extra step is called pointer indirection, and i
 2. **CPU Cache Misses (The Spatial Penalty):**
    - **The Stack is Local:** The stack is tightly packed together in memory. Because of this, the CPU automatically copies the entire stack into its ultra-fast, onboard **L1/L2 Cache** (which runs at hardware speeds).
    - **The Heap is Scattered:** Objects on the heap are spread out all over your system's RAM. When the CPU follows the pointer to the heap, the data is rarely in the CPU cache. The CPU is forced to pause, leave the processor chip, and wait to pull the data from the much slower **Main RAM**.
+
+---
+
+#### The 7 Primitive (Immutable)
+
+##### Once created, none of these can ever be changed—only replaced:
+
+```
+Number: let age = 30;
+String: let name = "Alice";
+Boolean: let isOpen = true;
+Undefined: A variable that has been declared but not assigned a value (let x;).
+Null: The intentional absence of any object value (let y = null;).
+BigInt: For numbers larger than the standard Number type can safely hold (let largeNum = 9007199254740991n;).
+Symbol: A unique and unchangeable identifier often used for object properties.
+```
