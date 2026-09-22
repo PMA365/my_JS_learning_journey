@@ -81,3 +81,17 @@ Null: The intentional absence of any object value (let y = null;).
 BigInt: For numbers larger than the standard Number type can safely hold (let largeNum = 9007199254740991n;).
 Symbol: A unique and unchangeable identifier often used for object properties.
 ```
+
+immutable types (like strings and numbers), you can never modify the value inside its memory box. Your only option to change what a variable says is reassigning it
+
+```
+let name = "Alex";
+let message = `Hello, ${name}`; // message is now "Hello, Alex"
+
+name = "Sam"; // We point the 'name' variable to a new string "Sam"
+
+console.log(message);
+// Output: "Hello, Alex" (It did NOT change to Sam!)
+// for changing it we should re reassigning it :
+message = `Hello, ${name}`; // Now message points to a new box: "Hello, Sam"
+```
