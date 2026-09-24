@@ -71,3 +71,50 @@ for (let [key, value] of myMap) {
     console.log(key, value);
 }
 ```
+
+---
+
+if we wanna set a default value for our input we can use the || operator
+
+```
+// here we check if there is no value on input variable we set the default one for it
+inputVariable = (inputVariable || "Asghar")
+// → user
+console.log(null || "user");
+// → user
+console.log(undefined || "user");
+// → user
+console.log("Agnes" || "user")
+// → Agnes
+// if the inputValue is number and we wanted to consider the ZERO as input
+// we cant do it with || bc it consider it as false value and return the 100 on the other side
+// Note: the || operator treating 0, false, or "" (empty strings) as "falsy"
+console.log(0 || 100);
+// → 100
+
+```
+
+if we wanna only check for null and undefined we should use the ??
+
+```
+console.log(0 || 100);
+// → 100
+console.log(0 ?? 100);
+// → 0
+console.log(null ?? 100); // → 100
+
+```
+
+so the || is still great for (Strings & Text Inputs) check and set default value for them
+bc it treat the "" as false
+its not good for Numbers
+
+```
+let username = ""; // User left the input box empty
+let displayName = username || "Guest";
+console.log(displayName); // "Guest" (Because "" is falsy)
+```
+
+the ?? is good for the API calls and numbers:
+
+API Responses / Optional Parameters: When an API returns data, a field might legitimately be 0 or false, but if it returns null or is missing (undefined), you want a fallback.
