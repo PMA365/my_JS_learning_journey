@@ -19,8 +19,6 @@
 // const triple = multiplyBy(3);
 // triple(5); // → 15
 
-// Write another pure function called maximum that takes an array of numbers and returns the largest one. Do not use Math.max - implement it yourself using a loop.
-
 function multiplyBy(factor) {
 	return (newFun = function (number) {
 		return factor * number;
@@ -28,3 +26,16 @@ function multiplyBy(factor) {
 }
 const triple = multiplyBy(3);
 console.log(triple(5)); // → 15
+
+// Write another pure function called maximum that takes an array of numbers and returns the largest one. Do not use Math.max - implement it yourself using a loop.
+function maximum(inputArray) {
+	let max = 0;
+	for (let num of inputArray) {
+		if (num > max) {
+			max = num;
+		}
+	}
+	return max;
+}
+let exampleArray = [1, 2, 4, 5, 15];
+console.log(maximum(exampleArray));
