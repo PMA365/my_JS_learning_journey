@@ -56,3 +56,94 @@ console.log(myAccount.deposit(50)); // 150
 console.log(myAccount.withdraw(30)); // 120
 console.log(myAccount.balance); // undefined (It's completely private!)
 ```
+
+---
+
+# Why Arrow Functions Were Created
+
+Arrow functions were introduced in ES6 (2015) to solve two major pain points of regular functions: **verbose syntax** and **`this` keyword confusion**.
+
+---
+
+## 1. Shorter Syntax & Less Boilerplate
+
+Writing simple operations with regular functions required typing the `function` keyword, parentheses, curly braces, and the `return` keyword. Arrow functions offer a clean, concise syntax—which is especially useful for array methods like `.map()`, `.filter()`, and `.reduce()`.
+
+### Example: Array Mapping
+
+```javascript
+// Regular Function (Verbose)
+const prices = [10, 20, 30];
+const doubledRegular = prices.map(function (price) {
+	return price * 2;
+});
+
+// Arrow Function (Concise with implicit return)
+const doubledArrow = prices.map((price) => price * 2);
+```
+
+# Pre-ES6 Workarounds for the `this` Keyword Bug
+
+Before arrow functions were introduced in ES6 (2015), developers had to use explicit workarounds to fix the `this` context bug in nested functions, callbacks, and timers (like `setTimeout`).
+
+Here are the two most common techniques developers used:
+
+---
+
+## 2. Lexical this (Fixing the this Context Bug)
+
+Regular functions create their own dynamic this context based on how they are called. This caused notorious bugs in callbacks, event listeners, and timers (like setTimeout), where this would accidentally point to the global window or become undefined.
+
+# Pre-ES6 Workarounds for the `this` Keyword Bug
+
+Before arrow functions were introduced in ES6 (2015), developers had to use explicit workarounds to fix the `this` context bug in nested functions, callbacks, and timers (like `setTimeout`).
+
+Here are the two most common techniques developers used:
+
+---
+
+### 1. The `self = this` (or `that = this`) Hack
+
+Because regular functions create their own `this`, developers would capture the outer `this` in a variable (usually named `self` or `that`) before entering the inner function. Thanks to **closures**, the inner function could remember that `self` variable.
+
+### Example: Using `self = this`
+
+```javascript
+const userProfile = {
+	username: "Bahador",
+	status: "Offline",
+	login: function () {
+		// Step 1: Capture 'this' in a variable
+		const self = this;
+
+		setTimeout(function () {
+			// Step 2: Use 'self' instead of 'this'
+			self.status = "Online";
+			console.log(self.username + " is now " + self.status);
+		}, 1000);
+	},
+};
+
+userProfile.login();
+```
+
+### 2. Using .bind(this)
+
+Every JavaScript function has a built-in method called .bind() that allows you to explicitly lock what this should point to.
+
+Example: Using .bind(this)
+
+```
+const userProfile = {
+    username: "Bahador",
+    status: "Offline",
+    login: function() {
+        setTimeout(function() {
+            this.status = "Online";
+            console.log(this.username + " is now " + this.status);
+        }.bind(this), 1000); // <-- Manually locking 'this' to userProfile
+    }
+};
+
+userProfile.login();
+```
