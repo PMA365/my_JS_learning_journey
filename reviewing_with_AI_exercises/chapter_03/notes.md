@@ -147,3 +147,83 @@ const userProfile = {
 
 userProfile.login();
 ```
+
+---
+
+---
+
+# Understanding Recursion in JavaScript: The Factorial Example
+
+Recursion is a function that **calls itself** to solve a problem. It can feel like magic, especially when trying to understand how math like `3 * 2 * 1` happens when the code seemingly only returns `1`.
+
+---
+
+## 1. The Bug: Why Global State is Dangerous
+
+A common beginner mistake is using an external or global variable to keep track of the total across recursive calls.
+
+### The Problem Code:
+
+```javascript
+let total = 1;
+
+function buggyFactorial(inputNum) {
+	if (inputNum == 0) {
+		return total;
+	}
+	total = inputNum * total;
+	return buggyFactorial(inputNum - 1);
+}
+
+console.log(buggyFactorial(5)); // Output: 120 (Looks correct!)
+console.log(buggyFactorial(5)); // Output: 14400 (WRONG! Because 'total' kept its old value)
+```
+
+### Why it fails:
+
+Because `total` lives outside the function, it remembers its value between runs. Calling the function a second time multiplies against the left-over value from the first call, leading to bugs.
+
+---
+
+## 2. The Clean & Idiomatic Way
+
+Instead of using a global variable, we let return values pass the math back up through the call stack safely.
+
+```javascript
+function recursiveFactorial(inputNum) {
+	// Base case: 0! or 1! is 1
+	if (inputNum === 0 || inputNum === 1) {
+		return 1;
+	}
+
+	// Recursive step: multiply current number by the result of the next smaller number
+	return inputNum * recursiveFactorial(inputNum - 1);
+}
+
+console.log(recursiveFactorial(5)); // Output: 120
+console.log(recursiveFactorial(5)); // Output: 120 (Safe to call again!)
+```
+
+---
+
+## 3. How It Works: The Two Phases of Recursion
+
+When you run `recursiveFactorial(3)`, it feels mysterious how it computes `3 * 2 * 1`. Recursion happens in **two distinct phases**:
+
+### Phase 1: Going Down (Building the Stack)
+
+The function pauses execution at each step because it has to wait for the next function call to finish before it can complete its multiplication.
+
+1. **`recursiveFactorial(3)`** runs $\rightarrow$ tries to return `3 * recursiveFactorial(2)` _(Pauses and waits)_
+2. **`recursiveFactorial(2)`** runs $\rightarrow$ tries to return `2 * recursiveFactorial(1)` _(Pauses and waits)_
+3. **`recursiveFactorial(1)`** runs $\rightarrow$ hits the base case and **returns `1`**.
+
+### Phase 2: Coming Back Up (The Unwinding)
+
+Now that we hit the bottom and got our `1`, the paused functions can finally finish their math, working their way **back up**:
+
+1. **`recursiveFactorial(1)`** gave back `1`.
+2. **`recursiveFactorial(2)`** finishes: `2 * 1 = 2` (returns `2` to the caller).
+3. **`recursiveFactorial(3)`** finishes: `3 * 2 = 6` (returns final answer `6`).
+
+> **Summary:** The function doesn't do the multiplication on the way down; it sets up the math problems (`3 *`, `2 *`), hits the bottom (`1`), and solves them on the way back up!
