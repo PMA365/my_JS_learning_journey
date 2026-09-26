@@ -227,3 +227,15 @@ Now that we hit the bottom and got our `1`, the paused functions can finally fin
 3. **`recursiveFactorial(3)`** finishes: `3 * 2 = 6` (returns final answer `6`).
 
 > **Summary:** The function doesn't do the multiplication on the way down; it sets up the math problems (`3 *`, `2 *`), hits the bottom (`1`), and solves them on the way back up!
+
+---
+
+### What is a Higher-Order Function?
+
+In JavaScript, functions are treated like ordinary variables—you can assign them to variables, pass them into other functions, or return them.
+
+A Higher-Order Function (HOF) is simply a function that does at least one of the following:
+
+Takes one or more functions as arguments (often called callbacks).
+
+Returns a new function as its result.
