@@ -1,0 +1,163 @@
+CHAPTER 1: VALUES, TYPES, AND OPERATORS - EXERCISES
+
+EXERCISE 1: LOOPING A TRIANGLE
+Task: Write a loop that makes seven calls to console.log to output:
+#
+##
+###
+####
+#####
+######
+#######
+Solution:
+for (let line = "#"; line.length <= 7; line += "#") {
+  console.log(line);
+}
+
+EXERCISE 2: FIZZBUZZ
+Task: Print numbers 1-100, but:
+- Divisible by 3: print "Fizz"
+- Divisible by 5: print "Buzz"  
+- Divisible by both 3 and 5: print "FizzBuzz"
+Solution:
+for (let i = 1; i <= 100; i++) {
+  if (i % 15 === 0) console.log("FizzBuzz");
+  else if (i % 3 === 0) console.log("Fizz");
+  else if (i % 5 === 0) console.log("Buzz");
+  else console.log(i);
+}
+
+EXERCISE 3: CHESSBOARD
+Task: Create an 8x8 grid of spaces and # characters (chess board)
+Solution:
+let size = 8;
+let board = "";
+for (let y = 0; y < size; y++) {
+  for (let x = 0; x < size; x++) {
+    board += (x + y) % 2 === 0 ? " " : "#";
+  }
+  board += "\n";
+}
+console.log(board);
+
+EXERCISE 4: COUNTING CHARACTERS
+Task: Write a function countChar that takes a string and a character, 
+and returns the number of times that character appears in the string.
+Also write a countBs function that counts uppercase 'B' characters.
+Solution:
+function countChar(string, char) {
+  let count = 0;
+  for (let c of string) {
+    if (c === char) count++;
+  }
+  return count;
+}
+
+function countBs(string) {
+  return countChar(string, "B");
+}
+
+// Test
+console.log(countChar("kakkerland", "k")); // → 4
+console.log(countBs("BBC")); // → 2
+
+EXERCISE 5: REPEAT
+Task: Write a function repeatString that takes a string and a number, 
+and returns the string repeated that many times.
+Solution:
+function repeatString(string, times) {
+  let result = "";
+  for (let i = 0; i < times; i++) {
+    result += string;
+  }
+  return result;
+}
+
+// Test
+console.log(repeatString("abc", 3)); // → "abcabcabc"
+
+EXERCISE 6: CHARACTER COUNT V2
+Task: Rewrite countChar to use the repeatString function 
+(or write a recursive version).
+Also: Write a function min that takes two numbers and returns 
+the smaller one.
+Solution:
+function min(a, b) {
+  return a < b ? a : b;
+}
+
+// Test
+console.log(min(0, 10)); // → 0
+console.log(min( -1, -2)); // → -2
+
+EXERCISE 7: TYPE COERCION OBSERVATIONS
+Task: Predict the output of these expressions and explain why:
+1. "5" - 3
+2. "5" + 3
+3. 8 * null
+4. "5" == 5
+5. "5" === 5
+Solution:
+1. "5" - 3 → 2 (string "5" coerces to number 5, then 5 - 3)
+2. "5" + 3 → "53" (+ concatenates strings when one operand is string)
+3. 8 * null → 0 (null coerces to 0 in numeric context)
+4. "5" == 5 → true (== does type coercion)
+5. "5" === 5 → false (=== does not do type coercion)
+
+EXERCISE 8: BOOLEAN LOGIC
+Task: Write expressions using &&, ||, and ! that:
+- Return true if at least one of two values is truthy
+- Return false only if both values are falsy
+- Return the first value if it's truthy, otherwise the second (|| behavior)
+- Return the first value if it's falsy, otherwise the second (&& behavior)
+Solution:
+// || returns first truthy value, or last if all falsy
+console.log(null || "user"); // → "user"
+
+console.log("Agnes" || "user"); // → "Agnes"
+
+// && returns first falsy value, or last if all truthy  
+console.log(true && false); // → false
+console.log(true && true); // → true
+console.log(0 && "never runs"); // → 0
+
+EXERCISE 9: OBJECT PROPERTIES
+Task: Write a function that calculates the sum of an array of numbers.
+Solution:
+function sum(numbers) {
+  let total = 0;
+  for (let n of numbers) {
+    total += n;
+  }
+  return total;
+}
+
+// Test
+console.log(sum([1, 2, 3, 4, 5])); // → 15
+
+EXERCISE 10: ARRAY MANIPULATION
+Task: Write a function that returns a new array containing only 
+the even numbers from the given array.
+Solution:
+function getEvens(numbers) {
+  let result = [];
+  for (let n of numbers) {
+    if (n % 2 === 0) result.push(n);
+  }
+  return result;
+}
+
+// Test
+console.log(getEvens([1, 2, 3, 4, 5, 6])); // → [2, 4, 6]
+
+KEY CONCEPTS COVERED:
+1. Dynamic typing (type belongs to value, not variable)
+2. Looping with for and while
+3. Arithmetic operators: +, -, *, /, %
+4. String concatenation vs addition
+5. Type coercion with == vs strict ===
+6. Special values: Infinity, -Infinity, NaN, null, undefined
+7. typeof operator (note: typeof null === "object")
+8. Boolean logic: &&, ||, ! with short-circuit evaluation
+9. String methods and escaping
+10. Automatic type conversion rules

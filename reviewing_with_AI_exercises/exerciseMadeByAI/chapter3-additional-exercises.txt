@@ -1,0 +1,126 @@
+CHAPTER 3: FUNCTIONS - ADDITIONAL EXERCISES
+
+Function Declaration vs Expression
+
+JavaScript has two ways to create functions: function declarations and function expressions. 
+
+A function declaration is hoisted and can be used before it's defined in the code:
+
+function greet(name) {
+  console.log("Hello " + name);
+}
+
+greet("Alice"); // Works! Even though greet is defined below
+
+A function expression is not hoisted and must be defined before use:
+
+const square = function(x) { return x * x; };
+
+// square(5); // ReferenceError - square is not defined yet
+
+Write a program that demonstrates the difference. Create both a function declaration and a function expression, then try calling each one in different orders to show which works and which doesn't.
+
+Default Parameters
+
+Before ES6, JavaScript functions couldn't have default parameter values. If you called a function with too few arguments, the missing parameters would be undefined.
+
+function oldPower(base, exponent) {
+  if (exponent === undefined) exponent = 1;
+  let result = 1;
+  for (let i = 0; i < exponent; i++) {
+    result *= base;
+  }
+  return result;
+}
+
+ES6 introduced default parameters:
+
+function power(base, exponent = 1) {
+  let result = 1;
+  for (let i = 0; i < exponent; i++) {
+    result *= base;
+  }
+  return result;
+}
+
+// Both return 8
+console.log(oldPower(2, 3));
+console.log(power(2, 3));
+
+Write a function called sum that takes three numbers and returns their sum. The third parameter should default to 0 if not provided, so sum(1, 2) returns 3 and sum(1, 2, 3) returns 6.
+
+Pure Functions
+
+A pure function is a function that:
+1. Always returns the same result given the same arguments
+2. Has no side effects (doesn't modify global state, doesn't print, doesn't read from I/O)
+
+Consider these two functions:
+
+function addOne(n) {
+  return n + 1;
+}
+
+function doubleAndAddOne(n) {
+  return n * 2 + 1;
+}
+
+Write a pure function called multiplyBy(factor) that returns a new function. The returned function should take a number and multiply it by the factor. For example:
+
+const triple = multiplyBy(3);
+triple(5); // → 15
+
+Write another pure function called maximum that takes an array of numbers and returns the largest one. Do not use Math.max - implement it yourself using a loop.
+
+Recursive Factorial
+
+The factorial of a non-negative integer n (written n!) is the product of all positive integers less than or equal to n. By convention, 0! = 1.
+
+Write a recursive function called factorial that takes a single non-negative integer parameter and returns its factorial.
+
+Test it on 5 (should return 120) and 0 (should return 1).
+
+Closure Practice
+
+Write a function called makeCounter that returns an object with two methods: increment() and get(). 
+
+Each call to makeCounter should create a new, independent counter. The increment() method should increase the counter by 1 and return the new value. The get() method should return the current value.
+
+Example:
+
+const counter1 = makeCounter();
+const counter2 = makeCounter();
+
+counter1.increment(); // → 1
+counter1.increment(); // → 2
+counter1.get(); // → 2
+
+counter2.get(); // → 0 (independent from counter1)
+
+
+####################################################
+Higher-Order: map
+
+Write a function called myMap that takes an array and a function as arguments. It should return a new array containing the results of applying the function to each element of the original array.
+
+Do not use the built-in Array.map method - implement it yourself using a loop.
+
+Example:
+
+const numbers = [1, 2, 3];
+const squared = myMap(numbers, n => n * n);
+// squared should be [1, 4, 9]
+
+Higher-Order: filter
+
+######################################################
+
+Write a function called myFilter that takes an array and a predicate function as arguments. It should return a new array containing only the elements for which the predicate returns true.
+
+Do not use the built-in Array.filter method - implement it yourself using a loop.
+
+Example:
+
+const numbers = [1, 2, 3, 4, 5];
+const evens = myFilter(numbers, n => n % 2 === 0);
+// evens should be [2, 4]
