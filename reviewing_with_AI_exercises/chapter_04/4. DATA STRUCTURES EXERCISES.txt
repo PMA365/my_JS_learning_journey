@@ -1,0 +1,327 @@
+DATA STRUCTURES: OBJECTS AND ARRAYS - EXERCISES
+Based on Eloquent JavaScript Chapter 4
+
+====================================================================
+EXERCISE 1: SUM OF A RANGE
+====================================================================
+
+Write a range function that takes two arguments, start and end, and
+returns an array containing all the numbers from start up to and
+including end.
+
+Write a sum function that takes an array of numbers and returns
+the sum of these numbers.
+
+Run this example and verify it returns 55:
+
+  console.log(sum(range(1, 10)));  // → 55
+
+As a bonus, modify range to take an optional third argument "step"
+that indicates the "step" value used when building the array.
+If no step is given, elements go up by one (old behavior).
+The function call range(1, 10, 2) should return [1, 3, 5, 7, 9].
+
+Make sure this also works with negative step values so that
+range(5, 2, -1) produces [5, 4, 3, 2].
+
+--------------------------------------------------------------------
+EXERCISE 2: REVERSE AN ARRAY
+====================================================================
+
+Arrays have a reverse method that changes the array by inverting
+the order in which its elements appear.
+
+For this exercise, write two functions:
+
+1. reverseArray: takes an array as its argument and produces a
+   new array that has the same elements in inverse order.
+
+2. reverseArrayInPlace: modifies the array given as its argument
+   by reversing its elements (like the built-in reverse method).
+
+Neither may use the standard reverse method.
+
+Consider: which variant (new array vs in-place) is useful in more
+situations? Which one runs faster?
+
+--------------------------------------------------------------------
+EXERCISE 3: A LIST
+====================================================================
+
+A list is a nested set of objects with the first object holding a
+reference to the second, the second to the third, and so on.
+
+  let list = {
+    value: 1,
+    rest: {
+      value: 2,
+      rest: {
+        value: 3,
+        rest: null
+      }
+    }
+  };
+
+Write a function arrayToList that builds up a list structure like
+the one shown when given [1, 2, 3] as its argument.
+
+Also write a listToArray function that produces an array from a
+list.
+
+Add the helper functions:
+
+- prepend: takes an element and a list and creates a new list
+  that adds the element to the front of the input list
+- nth: takes a list and a number and returns the element at the
+  given position (zero referring to the first element) or undefined
+  when there is no such element
+
+If you haven't already, also write a recursive version of nth.
+
+--------------------------------------------------------------------
+EXERCISE 4: DEEP COMPARISON
+====================================================================
+
+Write a function deepEqual that takes two values and returns true
+only if they are the same value or are objects with the same
+properties, where the values of the properties are equal when
+compared with a recursive call to deepEqual.
+
+To find out whether values should be compared directly (using ===)
+or have their properties compared, use the typeof operator. If it
+produces "object" for both values, do a deep comparison.
+
+But take one silly exception into account: because of a historical
+accident, typeof null also produces "object".
+
+The Object.keys function will be useful when you need to go over
+the properties of objects to compare them.
+
+--------------------------------------------------------------------
+EXERCISE 5: PHI COEFFICIENT - CORRELATION ANALYSIS
+====================================================================
+
+Jacques keeps a journal of his day and whether he transforms into
+a squirrel. The dataset is available in the coding sandbox.
+
+Write a function phi(table) that computes the phi coefficient from
+a four-element array [76, 9, 4, 1] as described in the chapter.
+
+Write a function tableFor(event, journal) that loops over all
+journal entries and tally how many times the event occurs in relation
+to squirrel transformations, returning a four-element table.
+
+Use these to compute correlations for events in a sample journal
+and find which events have correlation with absolute value > 0.1.
+
+Expected output (from the chapter) might show events like:
+  weekend:        0.1371988681
+  brushed teeth: -0.3805211953
+  candy:          0.1296407447
+  work:          -0.1371988681
+  spaghetti:      0.2425356250
+  reading:        0.1106828054
+  peanuts:        0.5902679812
+
+--------------------------------------------------------------------
+EXERCISE 6: JSON TRANSFORMATION
+====================================================================
+
+Write a function called jsonfy that takes an object/array value
+and returns its JSON string representation using ONLY the allowed
+JSON syntax (property names in double quotes, no functions/binding/
+
+no computation, no comments).
+
+Write a function called parsejs that takes a valid JSON string
+and returns the corresponding JavaScript value.
+
+Test your functions with these cases:
+
+  jsonfy({squirrel: false, events: ["work", "pizza"]})
+  // Should return: '{"squirrel":false,"events":["work","pizza"]}'
+
+  parsejs('{"a":1,"b":2}')
+  // Should return: {a: 1, b: 2}
+
+Note: You cannot use the built-in JSON.stringify/JSON.parse for
+the core implementation, but you can use them for verification.
+
+--------------------------------------------------------------------
+EXERCISE 7: OBJECT METHODS AND MUTABILITY
+====================================================================
+
+Write a function called sumObjectProperties that takes an object
+and returns the sum of all its numeric property values. If a
+property is not a number, skip it.
+
+Write a function called addProperty that takes an object, a
+property name, and a value, and adds that property to the object
+(modifying it in place).
+
+Demonstrate the difference between const protecting the binding
+vs. the object contents:
+
+  const score = {visitors: 0, home: 0};
+  // Should allow: score.visitors = 1;
+  // Should NOT allow: score = {visitors: 1, home: 1};
+
+Show that modifying a const object's properties works, but
+reassigning the const variable itself does not.
+
+--------------------------------------------------------------------
+EXERCISE 8: OPTIONAL CHAINING PRACTICE
+====================================================================
+
+Refactor the following code to use optional chaining (?.) and
+nullish coalescing (??) operators so it safely accesses deeply
+nested properties and provides fallback values:
+
+  let user = {name: "Alice"};
+  let city;
+
+  if (user !== null && user !== undefined) {
+    if (user.address !== null && user.address !== undefined) {
+      if (user.address.city !== null && user.address.city !== undefined) {
+        city = user.address.city;
+      }
+    }
+  }
+
+  // Should become:
+
+  let city = user?.address?.city ?? "Unknown";
+
+Also demonstrate the difference between || and ?? with these
+test cases:
+
+  console.log(0 || "fallback");  // → "fallback"
+  console.log(0 ?? "fallback");  // → 0
+  console.log("" || "fallback"); // → "fallback"
+  console.log("" ?? "fallback"); // → ""
+
+--------------------------------------------------------------------
+EXERCISE 9: REST PARAMETERS - VARIADIC FUNCTIONS
+====================================================================
+
+Write a function called called maximum that takes any number of
+numeric arguments and returns the largest one. If no arguments
+are given, return -Infinity.
+
+Use rest parameters (...args) and a for...of loop.
+
+Also write a function called sumRest that takes rest parameters
+and returns the sum of all arguments.
+
+Test these:
+  maximum(4, 1, 9, -2)  // → 9
+  maximum()             // → -Infinity
+  sumRest(1, 2, 3, 4, 5) // → 15
+
+--------------------------------------------------------------------
+EXERCISE 10: SPREAD OPERATOR - CLONE AND MERGE
+====================================================================
+
+Write a function called cloneObject that takes an object and
+returns a new object with the same properties (shallow copy).
+
+Write a function called mergeObjects that takes two objects
+and returns a new object that is the merge of both (properties
+from the second object override the first).
+
+Test these:
+  let a = {x: 1, y: 2};
+  let cloned = cloneObject(a);
+  cloned.x = 5;
+  console.log(a.x);    // → 1 (original unchanged)
+  console.log(cloned.x); // → 5
+
+  let o1 = {a: 1, b: 2};
+  let o2 = {b: 3, c: 4};
+  let merged = mergeObjects(o1, o2);
+  console.log(merged); // → {a: 1, b: 3, c: 4}
+
+--------------------------------------------------------------------
+EXERCISE 11: DESTRUCTURING PRACTICE
+====================================================================
+
+Write a function called extract that takes an array of exactly
+three numbers and returns an object {first, second, third} with
+those values using destructuring.
+
+Write a function called swap that takes an array of two elements
+and returns a new array with the elements swapped, using
+destructuring.
+
+Test these:
+  extract([10, 20, 30])  // → {first: 10, second: 20, third: 30}
+  swap([5, 10])          // → [10, 5]
+
+Also demonstrate destructuring with defaults:
+  let {message, score = 0} = {message: "Done"};
+  console.log(score);    // → 0
+
+--------------------------------------------------------------------
+EXERCISE 12: FOR...OF vs FOR...IN
+====================================================================
+
+Write a function called listProperties that takes an object and
+returns an array of its own property names (not from prototype).
+
+Use for...in to iterate, but only include properties that belong
+directly to the object (use hasOwnProperty or hasOwn).
+
+Test this:
+  listProperties({a: 1, b: 2, toString: undefined})
+  // → ["a", "b"] (toString should NOT appear if it's on prototype)
+
+Also: iterate over an array using for...of and log each element's
+index and value:
+  for (let [i, val] of ["a", "b", "c"].entries()) {
+    console.log(i, val);
+  }
+  // → 0 "a", 1 "b", 2 "c"
+
+====================================================================
+EXERCISE 13: ARRAY SLICE AND CONCATENATE
+====================================================================
+
+Write a function called removeAt that takes an array and an index
+and returns a new array with the element at the given index removed,
+without modifying the original array.
+
+Use slice and concat (as shown in the chapter).
+
+Test this:
+  let arr = ["a", "b", "c", "d", "e"];
+  let withoutSecond = removeAt(arr, 1);
+  console.log(withoutSecond); // → ["a", "c", "d", "e"]
+  console.log(arr);           // → ["a", "b", "c", "d", "e"] (unchanged)
+
+Also write a function called insertAt that inserts an element at
+a given index, shifting existing elements right.
+
+Test this:
+  let withX = insertAt(["a", "c", "d"], 1, "b");
+  console.log(withX); // → ["a", "b", "c", "d"]
+
+====================================================================
+EXERCISE 14: DEEP COMPARISON PRACTICE
+====================================================================
+
+Test your deepEqual function from Exercise 4 with these cases:
+
+  deepEqual(1, 1)          // → true
+  deepEqual(1, 2)          // → false
+  deepEqual({a: 1}, {a: 1}) // → true
+  deepEqual({a: 1}, {a: 2}) // → false
+  deepEqual(null, null)    // → true
+  deepEqual({a: {b: 1}}, {a: {b: 1}}) // → true (nested)
+  deepEqual({a: 1}, 1)     // → false (different types)
+
+Also test edge case:
+  deepEqual(undefined, undefined) // → should handle gracefully
+
+====================================================================
+COMPLETE ALL EXERCISES AND VERIFY YOUR ANSWERS!
+====================================================================

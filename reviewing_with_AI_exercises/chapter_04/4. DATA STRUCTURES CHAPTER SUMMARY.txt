@@ -1,0 +1,174 @@
+DATA STRUCTURES: OBJECTS AND ARRAYS - CHAPTER SUMMARY
+Eloquent JavaScript Chapter 4 - Quick Review
+
+====================================================================
+CORE CONCEPTS
+====================================================================
+
+1. DATA TYPES CATEGORIES
+   - Atoms: numbers, booleans, strings (immutable, single values)
+   - Objects: arbitrary property collections (mutable, complex)
+   - Arrays: special objects with numeric indices (0-based)
+
+2. OBJECTS
+   - Created with {} brace notation
+   - Properties: name: value pairs, separated by commas
+   - Property access: obj.name (dot) or obj[name] (brackets)
+   - Bracket notation allows dynamic keys & non-identifier names
+   - Properties can be added, modified, or deleted anytime
+   - const protects binding, not object contents
+   - Object identity: == compares by reference, not value
+
+3. ARRAYS
+   - Created with [] bracket notation
+   - Length property: array.length
+   - Elements accessed via index: arr[0], arr[1], etc. (0-based)
+   - Properties include: length + methods (push, pop, etc.)
+   - Methods add/remove at ends: push/pop (end), unshift/shift (start)
+   - Search: indexOf(value) / lastIndexOf(value)
+   - Transformation: slice(start, end) - creates new array
+   - Concatenation: concat(otherArray) - creates new array
+   - Removal: slice(0, idx).concat(slice(idx + 1))
+
+4. ITERATION
+   - Classic: for (let i = 0; i < arr.length; i++)
+   - Modern: for (let element of arr) - works on arrays, strings
+   - Access index + value: for (let [i, val] of arr.entries())
+
+5. MUTABILITY
+   - Primitives (number, string, boolean): IMMUTABLE
+     - Cannot change their internal value
+     - Reassigning binding creates new value
+   - Objects: MUTABLE
+     - Properties can change even with const binding
+     - const score = {visitors: 0}; score.visitors = 1; // OK
+     - const score = {visitors: 0}; score = {visitors: 1}; // Error!
+
+6. CORRELATION (phi coefficient)
+   - Measures dependence between two Boolean variables
+   - Range: -1 to 1
+   - 0 = no correlation, 1 = perfect positive, -1 = perfect negative
+   - Formula: (n00*n11 - n01*n10) / sqrt((n10+n11)*(n00+n01)*(n01+n11)*(n00+n10))
+   - Used to find which events correlate with squirrel transformations
+
+7. JAVA SCRIPT BUILDING BLOCKS
+   - Numbers, Booleans, strings = atoms
+   - Many information types need multiple atoms
+   - Objects group values into complex structures
+   - Arrays store sequences of values
+
+====================================================================
+KEY METHODS & PROPERTIES
+====================================================================
+
+ARRAY METHODS:
+- push(...items) - add to end, return new length
+- pop() - remove from end, return removed element
+- unshift(...items) - add to start, return new length
+- shift() - remove from start, return removed element
+- indexOf(value, fromIndex) - first occurrence index
+- lastIndexOf(value, fromIndex) - last occurrence index
+- slice(start, end) - copy portion, original unchanged
+- concat(arr) - join arrays, original unchanged
+- includes(value) - checks if value exists
+
+OBJECT METHODS:
+- Object.keys(obj) - array of property names
+- JSON.stringify(val) - object to JSON string
+- JSON.parse(str) - JSON string to object
+
+PROPERTY ACCESS:
+- dot notation: obj.property (works with valid identifier names)
+- bracket notation: obj["property"] or obj[variable] (dynamic keys)
+
+====================================================================
+CHAPTER EXAMPLE: WERE-SQUIRREL JOURNAL
+====================================================================
+
+Jacques tracks daily log entries as array of objects:
+
+  let journal = [
+    {events: ["work", "touched tree", "pizza", "running"], squirrel: false},
+    {events: ["work", "ice cream", "cauliflower", "lasagna"], squirrel: false},
+    {events: ["weekend", "cycling", "break", "peanuts", "beer"], squirrel: true},
+    ...
+  ];
+
+Functions developed:
+- addEntry(events, squirrel) - adds object to journal
+- tableFor(event, journal) - builds 2x2 frequency table
+- phi(table) - computes correlation coefficient
+- journalEvents(journal) - gets all unique event names
+
+Key findings from analysis:
+- peanuts: strong positive correlation (0.590)
+- brushing teeth: strong negative correlation (-0.381)
+- weekend: positive correlation (0.137)
+- work: negative correlation (-0.137)
+
+====================================================================
+EXERCISES COVERED (14 total)
+====================================================================
+1. Sum of a Range (range + sum functions, step parameter)
+2. Reverse an Array (new array vs in-place)
+3. A List (arrayToList, listToArray, prepend, recursive nth)
+4. Deep Comparison (deepEqual with typeof/Object.keys)
+5. Phi Coefficient (tableFor + phi functions)
+6. JSON Transformation (custom jsonfy + parsejs)
+7. Object Methods & Mutability (sumObjectProperties, const demo)
+8. Optional Chaining (??. + ?? vs || comparison)
+9. Rest Parameters (maximum + sumRest variadic functions)
+10. Spread Operator (cloneObject + mergeObjects)
+11. Destructuring (extract + swap + defaults)
+12. for...of vs for...in (listProperties + entries)
+13. Array slice & concatenate (removeAt + insertAt)
+14. Deep Comparison Practice (various test cases)
+
+====================================================================
+QUICK REFERENCE CHEAT SHEET
+====================================================================
+
+// OBJECT LITERAL
+let obj = {name: "Alice", age: 30};
+obj.name       // → "Alice" (dot access)
+obj["name"]    // → "Alice" (bracket access)
+obj.unknown    // → undefined
+"key" in obj   // → true/false property existence
+Object.keys(obj) // → ["name", "age"]
+
+// ARRAY LITERAL
+let arr = [1, 2, 3];
+arr.length     // → 3
+arr[0]         // → 1 (zero-based indexing)
+arr.push(4)    // → 4, arr is now [1,2,3,4]
+arr.pop()      // → 4, arr is now [1,2,3]
+
+// ITERATION
+for (let x of arr) { console.log(x) }     // elements
+for (let [i, x] of arr.entries()) { ... } // index + value
+
+// MUTABILITY
+let n = 5; n = 10;   // OK - reassignment
+let s = "hi"; s = "bye"; // OK - reassignment
+let obj = {a:1}; obj.a = 2; // OK - mutation
+const obj2 = {a:1}; obj2.a = 2; // OK - property change
+// const obj2 = {a:1}; obj2 = {a:2}; // Error! reassign const
+
+// CORRELATION
+function phi([n00, n01, n10, n11]) {
+  return (n11*n00 - n10*n01) / Math.sqrt(
+    (n10+n11)*(n00+n01)*(n01+n11)*(n00+n10));
+}
+
+// JSON
+let json = JSON.stringify({a:1});  // '{"a":1}'
+let obj = JSON.parse(json);        // {a:1}
+
+// SPREAD & DESTRUCTURING
+let a = {x: 1, y: 2};
+let b = {...a, z: 3};  // {x:1, y:2, z:3}
+let {x, y} = a;        // x=1, y=2
+
+// OPTIONAL CHAINING
+let val = obj?.prop?.sub; // undefined if null/undefined, no error
+let fallback = val ?? "default"; // val if not null/undefined, else "default"
