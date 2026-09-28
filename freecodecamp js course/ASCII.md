@@ -135,3 +135,37 @@ console.log(view instanceof Uint8Array);    // true
 console.log(buffer.constructor.name);       // "ArrayBuffer"
 console.log(view.constructor.name);         // "Uint8Array"
 ```
+
+---
+
+The ASCII standard covers 128 characters including:
+
+Uppercase and lowercase English letters (A-Z, a-z).
+Numbers (0-9).
+Common punctuation marks and symbols (!, @, #, and so on).
+Control characters (such as newline and tab).
+
+In JavaScript, you can access the numeric code of a character using the charCodeAt() method. This method returns the UTF-16 code unit of the character at a specified index. For the first 128 characters, this value matches the ASCII code.
+
+bc When Unicode was created, the designers made a smart choice. They made the first 128 characters of Unicode exact twins to ASCII.
+
+In ASCII, the letter "A" is number 65.
+
+In Unicode (UTF-16), the letter "A" is also number 65.
+
+While charCodeAt() helps you retrieve the numeric code of a character, the fromCharCode() method allows you to do the opposite: convert a UTF-16 code unit (which matches ASCII for basic characters) into its corresponding character.
+
+```
+let letter = "A";
+console.log(letter.charCodeAt(0));  // 65
+
+let char = String.fromCharCode(65);
+console.log(char);  //  A
+
+```
+
+so you cant use charCodeAt() to check if a character is
+uppercase,
+lowercase,
+or a digit
+by comparing its ASCII value.
