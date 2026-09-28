@@ -21,9 +21,9 @@
 // Make sure this also works with negative step values so that
 // range(5, 2, -1) produces [5, 4, 3, 2].
 
-function range(x, y ) {
+function range(x, y, step = 1) {
 	let outputArray = [];
-	for (let i = x; i <= y; i++) {
+	for (let i = x; x > y ? i >= y : i <= y; i += step) {
 		outputArray.push(i);
 	}
 	return outputArray;
@@ -36,4 +36,4 @@ function sum(inputArray) {
 	}
 	return total;
 }
-console.log(sum(range(1, 10)));
+console.log(range(5, 2, -1));
