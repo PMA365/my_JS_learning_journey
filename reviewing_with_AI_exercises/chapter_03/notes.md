@@ -239,3 +239,112 @@ A Higher-Order Function (HOF) is simply a function that does at least one of the
 Takes one or more functions as arguments (often called callbacks).
 
 Returns a new function as its result.
+
+```
+// 1. Create the Custom Higher-Order Function
+function withTimer(targetFunction) {
+  // It returns a *new* function that wraps the original one
+  return function(...args) {
+    console.time("Operation Took");
+
+    // Execute the original function, passing along any arguments it needs
+    const result = targetFunction(...args);
+
+    console.timeEnd("Operation Took");
+
+    // Return the original result so your app isn't broken
+    return result;
+  };
+}
+
+// 2. Your normal business logic functions
+function calculateCheckoutTotal(cartItems) {
+  // Imagine some heavy math here
+  return cartItems.reduce((total, item) => total + item.price, 0);
+}
+
+function fetchUserDatabase() {
+  // Imagine a slow process here
+  return "User Data Loaded";
+}
+
+// 3. Wrap them with our HOF!
+const timedCheckout = withTimer(calculateCheckoutTotal);
+const timedFetch = withTimer(fetchUserDatabase);
+
+// 4. Use them just like normal functions
+const total = timedCheckout([{ price: 50 }, { price: 25 }]);
+// Output in console: Operation Took: 0.15ms
+```
+
+That is a fantastic question, and it's usually the "lightbulb moment" for understanding higher-order functions!
+
+Let's break down both parts: **Why we return a new function**, and **why we need `...args**`.
+
+---
+
+### Part 1: Why do we need to `return` a new function?
+
+If we _didn't_ return a new function, and just ran `targetFunction` immediately inside `withTimer`, our code would look like this (the **wrong** way):
+
+```javascript
+// A regular function (NOT a HOF)
+function runImmediately(targetFunction) {
+	console.time("Timer");
+	const result = targetFunction(); // Runs RIGHT NOW
+	console.timeEnd("Timer");
+	return result;
+}
+```
+
+**The Problem with running it immediately:**
+The moment you call `runImmediately(calculateCheckoutTotal)`, it executes **instantly**, right then and there.
+
+But in a real app, you don't always want your functions to run _immediately_. Often, you want to hand a function over to an event listener (like a button click) or an API call, to be run **later** when the user actually clicks the button.
+
+By returning a _new_ function, `withTimer` acts like a **factory or a packaging service**:
+
+1. You give it your raw function (`calculateCheckoutTotal`).
+2. It wraps it up, adds the timer features, and hands you back a **new, upgraded version** of your function.
+3. You can now save that upgraded function in a variable (`timedCheckout`) and run it **whenever you want**, as many times as you want.
+
+---
+
+### Part 2: Why do we need `(...args)`?
+
+Look closely at what the returned function looks like:
+
+```javascript
+return function (...args) {
+	console.time("Timer");
+	const result = targetFunction(...args); // <-- Passing them here
+	console.timeEnd("Timer");
+	return result;
+};
+```
+
+**The Problem it solves:**
+When you wrap `targetFunction`, you don't always know what arguments (inputs) that function will need in the future.
+
+- `calculateCheckoutTotal` needs a list of cart items.
+- A `getUser(userId, includeDetails)` function needs a user ID and a boolean.
+- Some functions might need zero arguments, and some might need five.
+
+`...args` (called the **Rest Operator**) is basically saying: _"I don't know what or how many inputs this function will receive, so just capture **all** of them into an array called `args`, and pass them straight along to the `targetFunction`."_
+
+Without `...args`, if your function required inputs (like cart items), they would get lost inside the wrapper and your math would break (`undefined + undefined`).
+
+---
+
+### Summary
+
+- **Returning a function** lets you package your logic so it can be executed **later**, rather than forcing it to run instantly.
+- **`...args`** acts like a universal funnel, making sure any inputs your original function needs are safely passed through the wrapper without getting lost.
+
+### The Rule of Thumb for HOFs:
+
+Don't do this: myHOF( myFunction(data) ) ❌ (This runs the function right away and passes the result).
+
+Do this: myHOF( myFunction ) and then myWrappedFunction(data) ✅ (This passes the function blueprint so the HOF can control when and how it runs).
+
+In software engineering, this design pattern is actually called a Decorator Pattern (or a transparent wrapper). You "decorate" a function with extra behavior (like logging, timing, or security checks) without changing what the function actually does or what it returns.
