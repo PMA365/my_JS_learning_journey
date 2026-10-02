@@ -1,3 +1,12 @@
+// freecodecamp article exercises:
+
+// 1.Write a program that reverses a string using recursion.
+//  Given the string "freeCodeCamp" your program should return "pmaCedoCeerf".
+
+// 2.Write a program that returns the number of times a character appears in string.
+// Your program should receive a string and the character.
+// It should then return number of times the character appears in the string.
+
 // ============================================================
 // BEGINNER RECURSION PRACTICE
 // ============================================================
@@ -17,7 +26,7 @@
 // Example: countDown(5) -> 5 4 3 2 1
 
 function countDown(n) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -27,7 +36,7 @@ function countDown(n) {
 // Example: factorial(5) -> 120
 
 function factorial(n) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -37,7 +46,7 @@ function factorial(n) {
 // Example: sumArray([1, 2, 3, 4]) -> 10
 
 function sumArray(arr) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -47,7 +56,7 @@ function sumArray(arr) {
 // Example: findMax([3, 9, 1, 7]) -> 9
 
 function findMax(arr) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -57,7 +66,7 @@ function findMax(arr) {
 // Example: reverseString("hello") -> "olleh"
 
 function reverseString(str) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -68,7 +77,7 @@ function reverseString(str) {
 // Example: isSorted([1, 2, 3, 4]) -> true
 
 function isSorted(arr) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -79,7 +88,7 @@ function isSorted(arr) {
 // Example: isPalindrome("racecar") -> true
 
 function isPalindrome(str) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -89,7 +98,7 @@ function isPalindrome(str) {
 // Example: multiplyArray([1, 2, 3, 4]) -> 24
 
 function multiplyArray(arr) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -100,7 +109,7 @@ function multiplyArray(arr) {
 // Example: flatten([1, [2, 3], [4, [5]]]) -> [1, 2, 3, 4, 5]
 
 function flatten(arr) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -111,7 +120,7 @@ function flatten(arr) {
 // Example: binarySearch([1, 3, 5, 7, 9], 7) -> 3
 
 function binarySearch(arr, target) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -122,7 +131,7 @@ function binarySearch(arr, target) {
 // Example: fibonacci(6) -> 8
 
 function fibonacci(n) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
@@ -143,7 +152,7 @@ function fibonacci(n) {
 // Example: arrayToList([1, 2, 3])
 
 function arrayToList(arr) {
-  // your code here
+	// your code here
 }
 
 // ------------------------------------------------------------
