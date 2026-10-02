@@ -2,7 +2,14 @@
 
 // 1.Write a program that reverses a string using recursion.
 //  Given the string "freeCodeCamp" your program should return "pmaCedoCeerf".
-
+function reverseString(str, index = 0) {
+	index += 1;
+	if (index > str.length) {
+		return "";
+	}
+	return str[str.length - index] + reverseString(str);
+}
+console.log(reverseString("freeCodeCamp" ,0));
 // 2.Write a program that returns the number of times a character appears in string.
 // Your program should receive a string and the character.
 // It should then return number of times the character appears in the string.
