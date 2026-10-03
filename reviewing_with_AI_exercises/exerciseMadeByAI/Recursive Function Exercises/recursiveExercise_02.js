@@ -3,7 +3,7 @@
 // It should then return number of times the character appears in the string.
 
 function countCharacter(str, char, count = 0, index = 0) {
-	if (index >= str.length - 1) {
+	if (index > str.length - 1) {
 		return count;
 	}
 
@@ -14,7 +14,7 @@ function countCharacter(str, char, count = 0, index = 0) {
 	return countCharacter(str, char, count, index + 1);
 }
 
-console.log("char is appeared " + countCharacter("Bahador", "B") + " times");
+console.log("char is appeared " + countCharacter("aaa", "a") + " times");
 let count = 2;
 
 // little Note to remember
