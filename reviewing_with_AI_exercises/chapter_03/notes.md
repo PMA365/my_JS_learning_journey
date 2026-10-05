@@ -14,6 +14,26 @@ JavaScript lets you omit the parentheses if your arrow function only has one par
 
 (number) => { return number \* factor; } uses an explicit return. When you add curly braces {} to create a "block body," JavaScript requires you to write the return keyword if you want to send a value back.
 
+```js
+const greetings = name => {
+  console.log("Hello, " + name + "!");
+};
+
+const greetings = () => {
+  console.log("Hello");
+};
+
+
+const greetings = name => console.log("Hello, " + name + "!");
+
+// Uncaught SyntaxError: Unexpected token 'return
+const calculateArea = (width, height) => return width * height;
+
+// This will produce syntax errors
+function greetings name console.log("Hello, " + name + "!");
+//These types of one line functions only work if you are using the arrow function syntax.
+```
+
 ---
 
 # Understanding Closures in JavaScript
@@ -58,6 +78,22 @@ console.log(myAccount.balance); // undefined (It's completely private!)
 ```
 
 ---
+
+# Whats callback functions ?
+
+when you pass a function to another function so that other function can call it, it’s called a callback.
+
+```
+function greet(name) {
+console.log(`Hello, ${name}`);
+}
+
+function runWithName(fn) {
+fn("Sam"); // calls the function it was given
+}
+```
+
+## runWithName(greet); // greet is acting as a callback
 
 # Why Arrow Functions Were Created
 
@@ -133,16 +169,19 @@ Every JavaScript function has a built-in method called .bind() that allows you t
 
 Example: Using .bind(this)
 
-```
+```javascript
 const userProfile = {
-    username: "Bahador",
-    status: "Offline",
-    login: function() {
-        setTimeout(function() {
-            this.status = "Online";
-            console.log(this.username + " is now " + this.status);
-        }.bind(this), 1000); // <-- Manually locking 'this' to userProfile
-    }
+	username: "Bahador",
+	status: "Offline",
+	login: function () {
+		setTimeout(
+			function () {
+				this.status = "Online";
+				console.log(this.username + " is now " + this.status);
+			}.bind(this),
+			1000,
+		); // <-- Manually locking 'this' to userProfile
+	},
 };
 
 userProfile.login();
