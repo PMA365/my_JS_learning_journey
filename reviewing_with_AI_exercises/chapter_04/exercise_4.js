@@ -34,3 +34,5 @@ function deepEqual(obj1, obj2) {
 	}
 	deepEqual(obj1, obj2);
 }
+
+console.log(deepEqual(obj1, obj2));
