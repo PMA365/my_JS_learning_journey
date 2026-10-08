@@ -27,7 +27,7 @@ function deepEqual(obj1, obj2) {
 	Object.entries(obj2);
 	let index = 0;
 	for (let [key, value] in Object.entries(obj1)) {
-		if (key != Object.entries(obj2)[index]) {
+		if (key != Object.entries(obj2)[index][0]) {
 			return false;
 		}
 		if (value) index++;
