@@ -12,3 +12,4 @@ let botName = "bahadorBot";
 let botLocation = "Persia";
 let favoriteLanguage = "js";
 console.log(`My name is {$botName} and I live on {$botLocation}.`);
+
