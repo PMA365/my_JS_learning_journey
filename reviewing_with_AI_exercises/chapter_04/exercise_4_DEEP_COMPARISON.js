@@ -16,23 +16,33 @@
 
 // The Object.keys function will be useful when you need to go over
 // the properties of objects to compare them.
-const obj1 = { name: "Alice", age: 25, role: "admin" };
-const obj2 = { name: "Alice", age: 25, role: "admin" };
+const obj1 = {
+	name: "Alice",
+	age: 25,
+	role: { name: "Alice", age: 25, role: "admin" },
+};
+const obj2 = {
+	name: "Alice",
+	age: 25,
+	role: { name: "Alice", age: 25, role: "admin" },
+};
 
-obj3 = Object.entries(obj2);
-
-console.log(Object.entries(obj2));
 function deepEqual(obj1, obj2) {
-	Object.entries(obj1);
-	Object.entries(obj2);
-	let index = 0;
-	for (let [key, value] in Object.entries(obj1)) {
-		if (key != Object.entries(obj2)[index][0]) {
-			return false;
+	let equal = true;
+	for (const [key, value] of Object.entries(obj1)) {
+		if (!obj2.hasOwnProperty(key)) {
+			return (equal = false);
 		}
-		if (value) index++;
+		if (typeof obj1[key] == "object") {
+			// nested object detected
+			// need to check recursive
+			equal = deepEqual(obj1[key], obj2[key]);
+		} // if it was'nt nested object we just compare its value wit !=
+		else if (value != obj2[key]) {
+			return (equal = false);
+		}
 	}
-	deepEqual(obj1, obj2);
+	return equal;
 }
 
 console.log(deepEqual(obj1, obj2));
