@@ -5,6 +5,15 @@ let manifest2 = {
 	unit: "pounds",
 	hazmat: "no",
 };
+let manifest6 = { destination: "  " };
+let manifest4 = {
+	containerId: 1,
+	destination: "Santa Cruz",
+	weight: 304,
+	unit: "kg",
+	hazmat: false,
+};
+
 let manifest = {
 	containerId: 1,
 	destination: "Monterey, California, USA",
@@ -12,6 +21,8 @@ let manifest = {
 	unit: "lb",
 	hazmat: false,
 };
+let manifest3 = { containerId: -2 };
+let manifest5 = { containerId: 3.5 };
 
 function normalizeUnits(manifest) {
 	let outputObject = {};
@@ -41,29 +52,49 @@ function validateManifest(manifest) {
 		} else if (manifest[key] == null) {
 			outputObject[key] = "Invalid";
 			returnEmptyObject = false;
-			return outputObject;
+			// return outputObject;
 		}
 	}
 	if (inputManifestKeys.length == 0) {
 		return outputObject;
 	}
-	if (typeof manifest.containerId != "number" || manifest.containerId <= 0) {
+	// prettier-ignore
+	if (
+		manifest.hasOwnProperty("containerId") &&
+			((typeof manifest.containerId != "number") ||
+		manifest.containerId <= 0 ||
+		manifest.weight % 1 != 0)
+	) {
 		outputObject.containerId = "Invalid";
 		returnEmptyObject = false;
 	}
-	if (typeof manifest.destination != "string") {
+	// prettier-ignore
+	if (
+		manifest.hasOwnProperty("destination") &&
+		(typeof manifest.destination != "string" ||
+		((manifest.destination).trim()).length == 0)
+	) {
 		outputObject.destination = "Invalid";
 		returnEmptyObject = false;
 	}
-	if (typeof manifest.weight != "number" || manifest.weight <= 0) {
+	// prettier-ignore
+	if(manifest.hasOwnProperty("weight") && (typeof manifest.weight != "number" ||
+		manifest.weight <= 0 )){
 		outputObject.weight = "Invalid";
 		returnEmptyObject = false;
 	}
-	if (!((manifest.unit == "lb") ^ (manifest.unit == "kg"))) {
+	// prettier-ignore
+	if (
+		manifest.hasOwnProperty("unit") &&
+		(!((manifest.unit == "lb") ^ (manifest.unit == "kg")))
+	) {
 		outputObject.unit = "Invalid";
 		returnEmptyObject = false;
 	}
-	if (typeof manifest.hazmat != "boolean") {
+	if (
+		manifest.hasOwnProperty("hazmat") &&
+		typeof manifest.hazmat != "boolean"
+	) {
 		outputObject.hazmat = "Invalid";
 		returnEmptyObject = false;
 	}
@@ -82,4 +113,5 @@ function processManifest(manifest) {
 	console.log(`Total weight: ${manifest.weight} kg`);
 }
 normalizeUnits(manifest);
-console.log(validateManifest(manifest));
+console.log(validateManifest(manifest6));
+console.log(manifest6.destination.trim().length);
