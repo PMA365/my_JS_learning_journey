@@ -109,9 +109,13 @@ function validateManifest(manifest) {
 
 	return outputObject;
 }
-
+// prettier-ignore
 function processManifest(manifest) {
-	console.log(`Validation success: ${manifest.containerId}`);
+	let checkedObject = validateManifest(manifest);
+	const values = Object.values(checkedObject);
+	Object.entries(values).includes("Invalid")
+		? console.log(`Validation error: ${manifest.containerId}`)
+		: console.log(`Validation success: ${manifest.containerId}`);
 
 	manifest = normalizeUnits(manifest);
 	console.log(`Total weight: ${manifest.weight} kg`);
@@ -119,3 +123,8 @@ function processManifest(manifest) {
 normalizeUnits(manifest);
 console.log(validateManifest(manifest6));
 console.log(manifest6.destination.trim().length);
+
+processManifest({ containerId: -88, destination: "Soledad", weight: NaN });
+console.log(
+	validateManifest({ containerId: -88, destination: "Soledad", weight: NaN }),
+);

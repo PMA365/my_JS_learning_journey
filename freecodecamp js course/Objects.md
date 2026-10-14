@@ -192,3 +192,20 @@ const value = NaN;
 
 console.log(Number.isNaN(value)); // true
 ```
+
+#### How to get Object content
+
+Use Object.entries() to get each key–value pair, then loop through them:
+
+```js
+for (const [key, value] of Object.entries(manifest)) {
+	console.log(`${key}: ${value}`);
+}
+```
+
+To get the keys and values as separate arrays:
+
+```js
+const keys = Object.keys(manifest);
+const values = Object.values(manifest);
+```
