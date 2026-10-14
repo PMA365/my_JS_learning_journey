@@ -180,3 +180,15 @@ If this happens on a live web server (like a Node.js API processing an incoming 
 #### The Fix: Why Object.hasOwn() IS Safe
 
 To fix this fatal flaw, JavaScript engineers introduced **Object.hasOwn()** in ECMAScript 2022.
+
+---
+
+#### Tip
+
+In JavaScript, use Number.isNaN() to check whether a value is NaN.
+
+```js
+const value = NaN;
+
+console.log(Number.isNaN(value)); // true
+```

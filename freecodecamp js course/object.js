@@ -33,3 +33,8 @@ console.log("toString" in counts); // false
 counts.toString = 1;
 console.log(counts.toString); // 1
 console.log("toString" in counts); // true
+
+//
+const value = NaN;
+
+console.log(Number.isNaN(value)); // true

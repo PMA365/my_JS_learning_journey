@@ -78,8 +78,12 @@ function validateManifest(manifest) {
 		returnEmptyObject = false;
 	}
 	// prettier-ignore
-	if(manifest.hasOwnProperty("weight") && (typeof manifest.weight != "number" ||
-		manifest.weight <= 0 )){
+	if (
+		manifest.hasOwnProperty("weight") &&
+		(typeof manifest.weight != "number" ||
+			manifest.weight <= 0 ||
+			Number.isNaN(manifest.weight))
+	) {
 		outputObject.weight = "Invalid";
 		returnEmptyObject = false;
 	}
