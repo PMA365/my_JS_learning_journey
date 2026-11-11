@@ -69,3 +69,21 @@ console.log(true && "JavaScript"); // JavaScript
 console.log(false || "Hello!"); //Hello!
 console.log( 0 || null); //null
 ```
+
+---
+
+### Important note of %
+
+the Remainder of 10.5 / 1 in real math is 0 zero
+but in JavaScript bc the JavaScript calculates how many times B can completely (as an integer) fit into A, and then returns whatever is left over.
+
+جاوااسکریپت بررسی می‌کند که عدد A چند بار به طور کامل (صحیح) بر B بخش‌پذیر است، و سپس چیزی را که باقی می‌ماند به شما خروجی می‌دهد.
+
+Essentially, this operator tells you how much is left over after removing all complete
+chunks of 1 from 10.5. The answer is 0.5.
+
+ر واقع، این عملگر به شما می‌گوید پس از برداشتن تمام قالب‌های ۱ تایی کامل از عدد ۱۰.۵، چه مقدار باقی مانده است؟ پاسخ ۰.۵ است.
+
+```js
+console.log(10.5 % 1); // -> 0.5
+```

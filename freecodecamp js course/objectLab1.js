@@ -23,6 +23,14 @@ let manifest = {
 };
 let manifest3 = { containerId: -2 };
 let manifest5 = { containerId: 3.5 };
+let manifest7 = {};
+let manifest8 = {
+	containerId: 1,
+	destination: "Santa Cruz",
+	weight: 1.5,
+	unit: "kg",
+	hazmat: false,
+};
 
 function normalizeUnits(manifest) {
 	let outputObject = {};
@@ -63,7 +71,7 @@ function validateManifest(manifest) {
 		manifest.hasOwnProperty("containerId") &&
 			((typeof manifest.containerId != "number") ||
 		manifest.containerId <= 0 ||
-		manifest.weight % 1 != 0)
+		!Number.isInteger(manifest.containerId))
 	) {
 		outputObject.containerId = "Invalid";
 		returnEmptyObject = false;
@@ -82,7 +90,7 @@ function validateManifest(manifest) {
 		manifest.hasOwnProperty("weight") &&
 		(typeof manifest.weight != "number" ||
 			manifest.weight <= 0 ||
-			Number.isNaN(manifest.weight))
+			Number.isNaN(manifest.weight) || manifest.weight % 1 != 0)
 	) {
 		outputObject.weight = "Invalid";
 		returnEmptyObject = false;
@@ -120,11 +128,13 @@ function processManifest(manifest) {
 	manifest = normalizeUnits(manifest);
 	console.log(`Total weight: ${manifest.weight} kg`);
 }
-normalizeUnits(manifest);
-console.log(validateManifest(manifest6));
-console.log(manifest6.destination.trim().length);
+// normalizeUnits(manifest);
+// console.log(validateManifest(manifest6));
+// console.log(manifest6.destination.trim().length);
 
-processManifest({ containerId: -88, destination: "Soledad", weight: NaN });
-console.log(
-	validateManifest({ containerId: -88, destination: "Soledad", weight: NaN }),
-);
+// processManifest({ containerId: -88, destination: "Soledad", weight: NaN });
+// console.log(
+// 	validateManifest({ containerId: -88, destination: "Soledad", weight: NaN }),
+// );
+
+console.log(validateManifest(manifest8));
