@@ -1,19 +1,4 @@
-let manifest2 = {
-	containerId: 0,
-	destination: 405,
-	weight: -84,
-	unit: "pounds",
-	hazmat: "no",
-};
-let manifest6 = { destination: "  " };
-let manifest4 = {
-	containerId: 1,
-	destination: "Santa Cruz",
-	weight: 304,
-	unit: "kg",
-	hazmat: false,
-};
-
+let manifest2 = { containerId: -88, destination: "Soledad", weight: NaN };
 let manifest = {
 	containerId: 1,
 	destination: "Monterey, California, USA",
@@ -21,16 +6,17 @@ let manifest = {
 	unit: "lb",
 	hazmat: false,
 };
-let manifest3 = { containerId: -2 };
-let manifest5 = { containerId: 3.5 };
-let manifest7 = {};
-let manifest8 = {
-	containerId: 1,
-	destination: "Santa Cruz",
-	weight: 1.5,
-	unit: "kg",
-	hazmat: false,
+let manifest3 = {
+	containerId: "Invalid",
+	weight: "Invalid",
+	unit: "Missing",
+	hazmat: "Missing",
 };
+let manifest4 = { destination: "Watsonville", hazmat: true };
+let manifest5 = { containerId: -2 };
+
+// console.log(validateManifest(manifest2));
+processManifest(manifest4);
 
 function normalizeUnits(manifest) {
 	let outputObject = {};
@@ -71,7 +57,7 @@ function validateManifest(manifest) {
 		manifest.hasOwnProperty("containerId") &&
 			((typeof manifest.containerId != "number") ||
 		manifest.containerId <= 0 ||
-		!Number.isInteger(manifest.containerId))
+		manifest.containerId % 1 != 0)
 	) {
 		outputObject.containerId = "Invalid";
 		returnEmptyObject = false;
@@ -80,25 +66,21 @@ function validateManifest(manifest) {
 	if (
 		manifest.hasOwnProperty("destination") &&
 		(typeof manifest.destination != "string" ||
-		((manifest.destination).trim()).length == 0)
+		(manifest.destination).trim().length == 0)
 	) {
 		outputObject.destination = "Invalid";
 		returnEmptyObject = false;
 	}
 	// prettier-ignore
-	if (
-		manifest.hasOwnProperty("weight") &&
-		(typeof manifest.weight != "number" ||
-			manifest.weight <= 0 ||
-			Number.isNaN(manifest.weight) || manifest.weight % 1 != 0)
-	) {
+	if(manifest.hasOwnProperty("weight") && (typeof manifest.weight != "number" ||
+		manifest.weight <= 0 || Number.isNaN(manifest.weight) )){
 		outputObject.weight = "Invalid";
 		returnEmptyObject = false;
 	}
 	// prettier-ignore
 	if (
 		manifest.hasOwnProperty("unit") &&
-		(!((manifest.unit == "lb") ^ (manifest.unit == "kg")))
+		(((manifest.unit !== "lb") && (manifest.unit !== "kg")))
 	) {
 		outputObject.unit = "Invalid";
 		returnEmptyObject = false;
@@ -117,24 +99,19 @@ function validateManifest(manifest) {
 
 	return outputObject;
 }
-// prettier-ignore
+
 function processManifest(manifest) {
 	let checkedObject = validateManifest(manifest);
 	const values = Object.values(checkedObject);
-	Object.entries(values).includes("Invalid")
-		? console.log(`Validation error: ${manifest.containerId}`)
-		: console.log(`Validation success: ${manifest.containerId}`);
-
-	manifest = normalizeUnits(manifest);
-	console.log(`Total weight: ${manifest.weight} kg`);
+	if (values.includes("Invalid")) {
+		console.log(`Validation error: ${manifest.containerId}`);
+		console.log(checkedObject);
+	} else if (values.includes("Missing")) {
+		console.log(`Validation error: undefined`);
+		console.log(checkedObject);
+	} else {
+		console.log(`Validation success: ${manifest.containerId}`);
+		manifest = normalizeUnits(manifest);
+		console.log(`Total weight: ${manifest.weight} kg`);
+	}
 }
-// normalizeUnits(manifest);
-// console.log(validateManifest(manifest6));
-// console.log(manifest6.destination.trim().length);
-
-// processManifest({ containerId: -88, destination: "Soledad", weight: NaN });
-// console.log(
-// 	validateManifest({ containerId: -88, destination: "Soledad", weight: NaN }),
-// );
-
-console.log(validateManifest(manifest8));
