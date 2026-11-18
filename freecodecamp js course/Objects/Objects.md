@@ -7,6 +7,7 @@ How Other Languages Handle This
 Languages generally fall into three categories when dealing with primitives and objects:
 Strategy Languages How it works
 Compiler Autoboxing Java, C# Like JavaScript, they have separate primitives (int) and objects (Integer). However, boxing only happens when assigning a primitive to an object variable or putting it in a collection—not just to call a method like .toString().
+
 Pure Object Systems Python, Ruby They do not have raw primitives at all. A number (42) or a string in Python is always a full object. There is no "boxing" because everything is already inside an object "suit".
 Implicit On-The-Fly Boxing JavaScript Keeps data as lightweight primitives for maximum performance, but seamlessly spins up a temporary object wrapper only for the exact millisecond you call a method, then instantly deletes it.
 
@@ -104,7 +105,7 @@ const secureObj = Object.create(null);
 // secureObj.hasOwnProperty("name"); // ❌ Throws TypeError!
 ```
 
-#### 2. The hasOwnProperty() Method
+#### 3. The hasOwn() Method
 
 • Primary Purpose: Robust, bulletproof safety for modern applications. Introduced to permanently replace hasOwnProperty().
 • Why it was created: By making it a static method on the main Object class rather than a method on the instance, it can safely evaluate any data payload—even objects with no prototypes or hijacked keys—without ever throwing runtime errors.
@@ -208,4 +209,35 @@ To get the keys and values as separate arrays:
 ```js
 const keys = Object.keys(manifest);
 const values = Object.values(manifest);
+```
+
+---
+
+```js
+const person = { name: "Alice", age: 30, city: "New York" };
+
+const { name, age } = person;
+
+console.log(name); // Alice
+console.log(age); // 30
+```
+
+```js
+let person = { name: "Alice", age: 30, city: "New York" };
+
+let { name: personName, age: personAge } = person;
+
+console.log(personName); // Alice
+console.log(personAge); //  30
+```
+
+```js
+let person = { name: "Alice", age: 30, city: "New York" };
+let { name, age, country = "Unknown" } = person;
+
+console.log(country); // Unknown
+```
+
+```js
+
 ```
